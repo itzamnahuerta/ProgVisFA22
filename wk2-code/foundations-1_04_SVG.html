@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>SVG Example</title>
+        <script src="https://d3js.org/d3.v7.min.js"></script>
+        <style type="text/css">
+            /*TBD*/
+        </style>
+    </head>
+    <body>
+        <script type="text/javascript">
+            
+            //1. Declare SVG width, height, and the space between bars, in pixels
+            const svgWidth = 500;
+            const svgHeight = 300;
+            const barPadding = 1;
+
+            //2. Include our dataset for our bar chart 
+            const dataset = [10, 20, 30, 40, 50];
+
+            //3. Create our SVG element
+            const svg = d3.select("body")
+                        .append("svg")//we are now appending svg not div 
+                        .attr("width", svgWidth)//apply width and height specified  
+                        .attr("height", svgHeight);
+
+
+            //4. Make rects and add them to SVG to visualize our data. Remember they will need an x,y,width, and height. 
+            svg.selectAll("rect") //selectAll rects in the SVG not just one
+                .data(dataset) //our data! 
+                .enter()
+                .append("rect") //actually adds rect
+                .attr("x", (d,i) => i * (svgWidth / dataset.length)) // x for rects: making rects evenly spaced per the width of our canvas, remember: d is our data value and i is our index placeholder
+                .attr("y", d=> svgHeight - d) // y for rects: making the y for rects the height of the svg minus the data value --  remember SVG coordinates (x,y) for rect are for the upper-left corner!
+                .attr("width", svgWidth / dataset.length - barPadding) //width of bars is determined by the width of our SVG divided by the length of our data set, minus the space between each bar
+                .attr("height", d=>d); //height of rects will be the value of the data
+                
+                //console.log(dataset.length);
+
+            //5. Change the color of the bars
+                //.attr("fill", "red");
+
+            //6. Add data labels 
+            //Note: This relies on basically the same code we have used, but now we are making a text element (which like line, circle, ellipse, and rect is another element we can add to an SVG element. We are using .text() to return d, our data values. We then use the exact same x and y information). 
+            svg.selectAll("text")
+                .data(dataset)
+                .enter()
+                .append("text")
+                .text(d=>d)
+                .attr("x", (d,i) => i * (svgWidth / dataset.length)) //you can always add a few pixels here...try adding + 40 to center the numbers)
+                .attr("y", d => svgHeight - d) //try + or - 5 here to see what happens to the numbers
+                //.attr("fill", "red"); //change the colors of the data labels
+
+                //other .attr() properties you might add to a text element could be "font-family", "font-size", "fill" (where values might be "sans-serif", "12px", and "white")
+
+        </script>
+    </body>
+</html>

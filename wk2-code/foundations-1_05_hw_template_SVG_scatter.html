@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>SVG Scatterplot Homework 1</title>
+        <scrip src= "https://d3js.org/d3.v7.min.js"></script>
+        <style type="text/css">
+            /*TBD*/
+
+        </style>
+    </head>
+    <body>
+        <script type="text/javascript">
+            //1. Declare SVG width and height in pixels (remember the ; after declaring variables!)
+            
+            
+            //TODO: const 
+            //TODO: const
+
+
+
+            //2. Use this dataset for our scatterplot -- nothing to do here. 
+            
+            //NOTE: this data looks different than the data we used for a bar chart. It is an array of arrays. Here, [200, 40] is the [x,y] values of the first point in our scatterplot. Do you remember how to call array values? See our week 1 slide deck for a refresher.   
+            
+            
+            const dataset = [
+                            [200, 40], [170, 100], [400, 60], [100, 150], [410, 300], [120, 220], [310, 260], [400, 110]
+            ];
+
+
+
+            //3. Create our SVG element, applying the SVG (canvas) width and height 
+            //NOTE: this should be pretty straight forward from our example. 
+            
+            
+            //TODO: const svg = d3.select()
+                                // .append()
+                                // .attr() 
+                                // .attr(); //Hint: don't delete this ending ;
+
+
+            
+            //4. Use "circle" (not "rect") and add them to SVG to visualize our data. 
+            
+            //NOTE: Remember that "rect" needed the following in .attr(): x,y,width,height. But, "circle" requires different parameters here (3 in total). 
+            //HINT: check today's slide deck.
+            //NOTE: get the circles showing before you attempt the labels (step 5) 
+
+            
+            //TODO: svg.selectAll()
+                        // .data()
+                        // .enter()
+                        // .append()
+                        // .attr() //(a required circle value, and a function of what it returns)  // Hint: we want to return d[] with the x value of the array
+                        // .attr() //(a required circle value, and a function of what it returns)  // Hint: we want to return d[] with the y value of the array 
+                        // .attr() //(another required circle value, and a number: try 10)
+                        // .attr(); //optional: change the color of the circles 
+
+            //HINT: don't forget the ending ;
+
+
+
+            //5. Add data labels 
+            //NOTE: This will rely on much of the same code we have used in our SVG example. 
+            
+            
+            // TODO: svg.selectAll()
+            //      .data()
+            //      .enter()
+            //      .append()
+            //      .text() //we want the text to return the data values
+            //      .attr() //we want to give the text an x value, use what you used above, mind the difference between circle text properties 
+            //      .attr(); //we want to give the text a y value, use what you used above, mind the difference between circle text properties 
+
+
+            
+            //OPTIONAL: other .attr() properties you might add to a text element could be, for example, "font-size" and "fill" (where values might be, for example, "12px", and "blue")
+            //BONUS: try to get your labels to not overlap with the circles (optional)
+            //HINT: don't forget the ending ;
+
+
+        </script>
+    </body>
+</html>
