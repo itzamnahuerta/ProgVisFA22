@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>VT Mountain Data Example</title>
+        <script src= "https://d3js.org/d3.v7.min.js"></script>
+        <style type="text/css"> 
+        	svg{
+            width:1200px;
+            height:1200px;
+          }
+
+          .title {
+            font-size: 16px;
+            font-weight: bold;
+            font-family: sans-serif;
+          }
+
+          .labels{
+            font-size: 13px;
+            font-weight: normal;
+            font-family: sans-serif;
+          }
+        
+
+        </style>
+    </head>
+    <body>
+         <svg></svg> <!--Remember to add the svg here like this if you are applying it above-->
+
+        <script type="text/javascript">
+       
+       //data source: https://en.wikipedia.org/wiki/List_of_mountains_of_Vermont 
+
+      //dataset (Take a look at the examples provided last week for reference, if needed.) 
+      d3.csv("vtmountains.csv").then(dataset => {  
+
+        //format the data 
+        dataset.forEach(d => {
+            d.mountain = d.mountain;
+            d.height = +d.height.replace(",", "");
+            d.town = d.town;
+        });
+
+        //Color using scales, d3 min and max 
+        const maxData = d3.max(dataset, d=>d.height);
+        const minData = d3.min(dataset, d=>d.height);
+        // const myColor = d3.scaleLinear()
+        //                   .domain([minData, maxData])
+        //                   .range(["#f7fcfd", "#00441b"]);//I used the lightest and darkest green from the ColorBrewer "Greens" colorscale
+        const myColor = d3.scaleQuantize()
+                          .domain([minData, maxData])
+                          .range(["#e5f5e0", "#a1d99b","#31a354"]);//Colorbrewer 3-class Greens Color Palette
+    
+ 
+        //Drawn with d3.line()                 
+        const mountainGenerator = d3.line();
+        
+
+        //To draw the lines we are using an array to capture the path points. D3 uses the [x,y] of the array as x y for the path. 
+        //The original path points for our mountain drawing: "M60, 10 L95,95 L5,95 L30,50 L35,60 L44,35 L50,50 L60,10"
+        const mt_points = [
+        [60,10],//This is the M point. The rest are Ls. 
+        [95,95],
+        [5,95],
+        [30,50],
+        [35,60],
+        [44,35],
+        [50,50],
+        [60,10]
+        ];
+
+        const pathString = mountainGenerator(mt_points);
+        const perRow = 7;
+        const size = 100;
+        const sizeY = 110;
+
+        const svg = d3.select("svg");
+
+        //making groups
+        const g = svg.selectAll("g")
+                      .data(dataset)
+                      .enter()
+                      .append("g")
+                      .attr("transform", (d,i)=>{
+                        const x = (i % perRow + 1) * size;
+                        const y = (Math.floor(i/perRow)+.55) * sizeY;
+                        return "translate(" + [x,y] + ")";})
+                      // .attr("fill", d=> myColor(d.height))
+                      // .attr("stroke", "#00441b")
+                      // .attr("stroke-width", "1px");
+                      // //see what happens if you apply ^^ here instead of below
+
+        g.append("path")
+         .attr("d", pathString)
+         .attr("fill", d=> myColor(d.height))
+         .attr("stroke", "#00441b")
+         .attr("stroke-width", "1px");
+
+        //Make Labels
+        g.append("text")
+          .attr("x", size/2) //x coordinate
+          .attr("y", size + 5) //y coordinate
+          .attr("text-anchor", "middle") //horizontal text alignment 
+          .attr("dx", "2px")//x coordinate offset
+          .attr("dy", "5px") //y coordinate offset
+          .attr("class","labels")
+          .attr("fill", "#00441b")
+          .text(d=>d.mountain); //the text 
+
+
+        //Make Title (Note the difference between svg.append text and g.append text) 
+        svg.append("text")
+           .attr("x", 450) //x coordinate
+           .attr("y", 40) //y coordinate
+           .attr("text-anchor", "middle") //horizontal text alignment
+           .attr("fill", "#00441b")
+           .attr("class", "title")
+           .text("Mountains in Vermont in 3 Groups (Darker Color = Greater Height)"); //the text 
+
+        });
+        
+
+        </script>
+    </body>
+</html>

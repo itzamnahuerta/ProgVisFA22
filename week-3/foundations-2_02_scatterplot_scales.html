@@ -1,0 +1,145 @@
+
+<!-- the y is always upside down, by default it starts on the left corner as 0,0 but it should start in the bottle so the values are shown correspondately -->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>SVG Scatterplot Scales</title>
+        <script src= "https://d3js.org/d3.v7.min.js"></script>
+        <style type="text/css">
+            /*TBD*/
+
+        </style>
+    </head>
+    <body>
+        <script type="text/javascript">
+           // VERSION 1: Linear scaling with hard coded domain and range
+
+            //1. Declare SVG (canvas) width and height
+
+            const svgW = 500;
+            const svgH = 500;
+
+
+            //2. Data (with newly added data points)
+            
+            const dataset = [
+            
+            [200, 40], [170, 100], [400, 60], [100, 150], [410, 300], [120, 220], [310, 260], [400, 110], [500,90], [270, 600], [530, 380], [475, 475]
+            
+            ];
+
+            
+            //3. Create linear scale for data
+
+            const newScale = d3.scaleLinear()
+                             .domain([0, 700]) //the input -- we are hard coding these #s
+                             .range([0, 490]); //the desired output -- we are hard coding these #s
+
+
+
+            //4. Create our SVG 
+            
+            const svg = d3.select("body")
+                        .append("svg")
+                        .attr("width", svgW) 
+                        .attr("height", svgH);
+
+            
+            //5. Use "circle", and add them to our, SVG to visualize our data. 
+            
+            svg.selectAll("circle") 
+                .data(dataset) 
+                .enter()
+                .append("circle") 
+                .attr("cx", d => newScale(d[0])) //make sure you put the scaled x here
+                .attr("cy", d => newScale(d[1])) //make sure you put the scaled y here 
+                .attr("r", 6) 
+                .attr("fill", "pink"); 
+
+
+            //6. Add data labels  
+
+            // svg.selectAll("text")
+            //      .data(dataset)
+            //      .enter()
+            //      .append("text")
+            //      .text(d => d)
+            //      .attr("x", d => newScale(d[0] +10))  //make sure you put the scaled x here & NOTE: the +10 here moves the labels over so they do not overlap the circles
+            //      .attr("y", d => newScale(d[1] +3)) //make sure you put the scaled y here & NOTE: the +3 here moves the labels down so they are centered 
+            //      .attr("font-family", "sans-serif")
+            //      .attr("font-size", "10px")
+            //      .attr("fill", "midnightblue"); 
+                
+            
+            // //VERSION 2: RESPONSIVE SCALING of X and Y USING D3 MAX 
+
+
+            //  //1. Declare SVG (canvas) width and height  
+
+            // const svgW = 500;
+            // const svgH = 500;
+
+
+            // //2. Data (with newly added data points) as well as data-related variables: max for x and y and padding
+            
+            // const dataset = [
+            
+            // [200, 40], [170, 100], [400, 60], [100, 150], [410, 300], [120, 220], [310, 260], [400, 110], [500,90], [270, 600], [530, 380], [475, 475]
+            
+            // ];
+
+            // const maxX = d3.max(dataset, d => d[0]);            
+            // const maxY = d3.max(dataset, d => d[1]);
+            
+            // const padding = 50; 
+
+            // //3. Create responsive scales for the x AND y (to make them responsive to our dataset growing: using d3.max)
+            // const newXScale = d3.scaleLinear()
+            //                  .domain([0, maxX]) //the input: uses 0 and the largest x values in the dataset
+            //                  .range([padding, svgW-padding]); //the desired output: 0 and the width of our SVG canvas (remember, x is width)
+
+            // const newYScale = d3.scaleLinear()
+            //                  .domain([0, maxY]) //the input: uses 0 and the largest y values in the dataset
+            //                  .range([svgH-padding, padding]); //the desired output: 0 and the height of our SVG canvas and within our margin (remember, y is height). 
+
+            
+            // //4. Create our SVG 
+            
+            // const svg = d3.select("body")
+            //             .append("svg")
+            //             .attr("width", svgW) 
+            //             .attr("height", svgH);
+
+            
+            // //5. Use "circle", and add them to our, SVG to visualize our data. 
+
+            // svg.selectAll("circle") 
+            //     .data(dataset) 
+            //     .enter()
+            //     .append("circle") 
+            //     .attr("cx", d => newXScale(d[0])) //make sure you put the scaled x here
+            //     .attr("cy", d => newYScale(d[1])) //make sure you put the scaled y here 
+            //     .attr("r", 6) 
+            //     .attr("fill", "pink"); 
+
+
+            // //6. Add data labels  
+
+            // svg.selectAll("text")
+            //      .data(dataset)
+            //      .enter()
+            //      .append("text")
+            //      .text(d => "(" + d[0] + "," + d[1] + ")") //this method of writing is called string concatonation. See what happens if you add spaces around the comma in the "" 
+            //      .attr("x", d => newXScale(d[0]))  //make sure you put the scaled x here 
+            //      .attr("y", d => newYScale(d[1])) //make sure you put the scaled y here
+            //      .attr("font-family", "sans-serif")
+            //      .attr("font-size", "10px")
+            //      .attr("fill", "midnightblue"); 
+                
+
+
+        </script>
+    </body>
+</html>

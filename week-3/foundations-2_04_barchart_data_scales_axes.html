@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Bar Chart Scales and Load Data</title>
+        <script src= "https://d3js.org/d3.v7.min.js"></script>
+        <style type="text/css">
+            /*TBD*/
+
+        </style>
+    </head>
+    <body>
+        <script type="text/javascript">
+                
+                const margin = 30; 
+                const width = 500; 
+                const height = 500;                
+
+                const dataset = [ 
+                             {"day": "Monday", "emails": "100"},
+                             {"day": "Tuesday", "emails": "150"},
+                             {"day": "Wednesday", "emails": "200"},
+                             {"day": "Thursday", "emails": "250"},
+                             {"day": "Friday", "emails": "300"},
+                             {"day": "Saturday", "emails": "350"},
+                             {"day": "Sunday", "emails": "400"}  
+                            ];
+
+                const maxY = d3.max(dataset, d => +d.emails);
+
+                const xScale = d3.scaleBand()
+                                .domain(dataset.map(d => d.day))
+                                .range([margin, width - margin])
+                                .paddingInner(.02); // this is how you make padding between the bars it is 2% of a bar's width
+                
+                const yScale = d3.scaleLinear()
+                                .domain([0, maxY]) 
+                                .range([height - margin, margin]);
+                
+                const bottomAxis = d3.axisBottom()
+                                     .scale(xScale);
+                const leftAxis = d3.axisLeft()
+                                   .scale(yScale);
+
+                
+                //Create our SVG element
+               const svg = d3.select("body")
+                            .append("svg")
+                            .attr("width", width)
+                            .attr("height", height);
+
+                //Make bars and append data
+                svg.selectAll("rect") 
+                    .data(dataset) 
+                    .enter()
+                    .append("rect")
+                    .attr("x", d => xScale(d.day)) //use scaled x and the data we want
+                    .attr("y", d => yScale(+d.emails)) //use scaled y and the data we want
+                    .attr("width", xScale.bandwidth()) //width of bars 
+                    .attr("height", d => (height-margin) - yScale(+d.emails))
+                    .attr("fill", "pink");
+
+                // //Implement bottom axis
+                svg.append("g")
+                    .attr("transform", "translate(0," + (height - margin) + ")") 
+                    .call(bottomAxis); 
+
+
+                // //Implement left axis
+                 svg.append("g")
+                     .attr("transform", "translate(" + margin + ",0)")
+                     .call(leftAxis); 
+
+            
+        </script>
+    </body>
+</html>

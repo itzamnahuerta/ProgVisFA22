@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Circle Data Example</title>
+        <script src= "https://d3js.org/d3.v7.min.js"></script>
+        <style type="text/css"> 
+        	/*TBD */
+        </style>
+    </head>
+    <body>
+        <script type="text/javascript">
+        
+        //Delinate canvas w and h 
+        const svgWidth = 600;
+        const svgHeight = 600;
+
+        
+        //Create data
+        const dataset = [10, 20, 30, 40, 50];
+
+
+        //Create colorscale using domain and range
+        const myColor = d3.scaleLinear()
+                        .domain([0,50])
+                        .range(["white", "pink"]);
+
+
+        // //Color scale using d3.max() instead of a specific domain max
+        // const myColor = d3.scaleLinear()
+        //                 .domain([0, d3.max(dataset)])
+        //                 .range(["white", "pink"]);
+
+
+
+        //Create svg canvas
+        const svg = d3.select("body")
+                      .append("svg")
+                      .attr("width", svgWidth)
+                      .attr("height", svgHeight);
+
+
+        //Create circles and append data and colors 
+        	d3.select("svg")
+        	   .selectAll("circle")
+               .data(dataset)
+               .enter()
+               .append("circle")
+               .attr("r", d => d)
+               .attr("cx", (d,i) => i * (svgWidth/dataset.length) + 20)
+               .attr("cy", svgHeight/2)
+        	   .attr("fill", d=> myColor(d));
+
+
+
+        </script>
+    </body>
+</html>

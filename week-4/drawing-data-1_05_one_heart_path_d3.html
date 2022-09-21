@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <title>One Heart Drawn with D3 and SVG</title>
+        <script src= "https://d3js.org/d3.v7.min.js"></script>
+        <style type="text/css"> 
+        	svg{
+                width: 800px;
+                height: 800px;
+            }
+        
+        </style>
+    </head>
+    <body>
+        <svg></svg>
+
+        <script type="text/javascript">
+        
+        //the original SVG path points for our heart drawing--mind the commas!!!        
+        const heart = ["M200,200 C200,100 350,150 297,230 L200,350 L101,230 C50,150 200,100 200,200"];
+
+
+        const svg = d3.select("svg");
+
+        svg.append("path")
+          .attr("d", heart)
+          .attr("stroke", "pink")
+          .attr("stroke-width", 3)
+          .attr("fill", "none");
+          //.attr("transform", "translate(100,100)rotate(90, 200,200)");
+          //.attr("transform", "scale(.5)");
+          //.attr("transform", "translate(100,100)rotate(90, 100,100)scale(.5)");
+          
+          
+
+
+        </script>
+    </body>
+  </html>

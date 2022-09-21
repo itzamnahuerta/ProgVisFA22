@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Dichotomized Charts</title>
+        <script src= "https://d3js.org/d3.v7.min.js"></script>
+        <style type="text/css">
+            h1 {
+              font-family: "Helvetica", "Arial", sans-serif;
+              font-size: 28px;
+              color: midnightblue;
+            }
+
+            /*this is how we are styling the axes for BOTH charts*/
+            .axis path, 
+            .axis line{
+                stroke: midnightblue;
+            }
+
+            .axis text{
+                font-family: "Helvetica", "Arial", sans-serif; /*this is saying use Helvetica, if you can't, then use Arial, and if you can't then useu the browser's default sans-serif*/
+                font-size: 12px;
+                color: midnightblue;
+                }        
+        </style>
+    </head>
+    <body>
+    	<!--here we have two SVGs now, where we attributed an individual ID to each in order to call them later on-->
+    	<h1>Two Unrelated Charts!</h1>
+    	<svg width="500" height="500" id="svg1"></svg>  
+		  <svg width="500" height="500" id="svg2"></svg>
+        <script type="text/javascript">
+                
+                //Chart 1
+                const margin = 30;
+                const width = 500; 
+                const height = 500;                
+
+                const dataset = [ 
+                             {"day": "Monday", "emails": "100"},
+                             {"day": "Tuesday", "emails": "150"},
+                             {"day": "Wednesday", "emails": "200"},
+                             {"day": "Thursday", "emails": "250"},
+                             {"day": "Friday", "emails": "300"},
+                             {"day": "Saturday", "emails": "350"},
+                             {"day": "Sunday", "emails": "400"}   
+                            ];
+
+                const maxY = d3.max(dataset, d => +d.emails);
+
+                const xScale = d3.scaleBand()
+                                .domain(dataset.map(d => d.day))
+                                .range([margin, width - margin])
+                                .paddingInner(.02);
+                
+                const yScale = d3.scaleLinear()
+                                .domain([0, maxY]) 
+                                .range([height - margin, margin]);
+                
+                const bottomAxis = d3.axisBottom().scale(xScale);
+                const leftAxis = d3.axisLeft().scale(yScale);
+
+                
+                //Create SVG1 
+               const svg1 = d3.select("#svg1"); //to call an id be sure to use #
+
+                //Make bars and append data to SVG1
+                svg1.selectAll("rect") 
+                    .data(dataset) 
+                    .enter()
+                    .append("rect")
+                    .attr("x", d => xScale(d.day)) 
+                    .attr("y", d => yScale(+d.emails)) 
+                    .attr("width", xScale.bandwidth()) 
+                    .attr("height", d => (height-margin) - yScale(+d.emails))
+                    .attr("fill", "pink");
+
+                //Implement bottom axis for SVG1
+                svg1.append("g")
+                    .attr("class", "axis")
+                    .attr("transform", "translate(0," + (height - margin) + ")") 
+                    .call(bottomAxis); 
+
+                //Implement left axis
+                 svg1.append("g")
+                     .attr("class", "axis")
+                     .attr("transform", "translate(" + margin + ",0)")
+                     .call(leftAxis); 
+
+            //Chart 2
+
+            //width and height to apply below
+
+            const svgW = 500;
+            const svgH = 500;
+
+            //2. Dataset 2 
+            
+            const dataset2 = [
+            
+            [200, 40], [170, 100], [400, 60], [100, 150], [410, 300], [120, 220], [310, 260], [400, 110], [500,90], [270, 600], [530, 380], [475, 475]
+            
+            ];
+
+            const maxX2 = d3.max(dataset2, d => d[0]);
+            const maxY2 = d3.max(dataset2, d => d[1]);
+            const padding = 30; //i changed this to 30 not 50 so the axes in the 2 charts would better align.
+
+
+            //scales for x and y for SVG2
+            const newXScale = d3.scaleLinear()
+                             .domain([0, maxX2]) 
+                             .range([padding, svgW-padding]); 
+
+            const newYScale = d3.scaleLinear()
+                             .domain([0, maxY2]) 
+                             .range([svgH-padding, padding]); 
+
+
+            //Create bottom and left axis SVG2. Each axis needs the relevant scale applied, and ticks (if using)
+            const bottomAxis2 = d3.axisBottom()
+                                .scale(newXScale)
+                                .ticks(10);
+
+            const leftAxis2 = d3.axisLeft()
+                             .scale(newYScale)
+                             .ticks(10);                
+
+            
+            //Select SVG 2 
+            const svg2 = d3.select("#svg2");
+            
+            //Use "circle", and add them to our SVG2 object to visualize our data. 
+            svg2.selectAll("circle") 
+                .data(dataset2) 
+                .enter()
+                .append("circle") 
+                .attr("cx", d => newXScale(d[0])) 
+                .attr("cy", d => newYScale(d[1])) 
+                .attr("r", 6) 
+                .attr("fill", "pink"); 
+
+            //Implement bottom axis for SVG2 
+            svg2.append("g")
+                .attr("class", "axis") 
+                .attr("transform", "translate(0," + (svgH -padding) + ")") 
+                .call(bottomAxis2); 
+
+            //Implement left axis for SVG 2
+             svg2.append("g")
+                 .attr("class", "axis") 
+                 .attr("transform", "translate(" + padding + ",0)") 
+                 .call(leftAxis2); 
+            
+        </script>
+    </body>
+</html>

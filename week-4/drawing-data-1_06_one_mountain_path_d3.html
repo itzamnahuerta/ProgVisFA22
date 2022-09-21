@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>One Mountain Drawn with D3</title>
+        <script src= "https://d3js.org/d3.v7.min.js"></script>
+        <style type="text/css"> 
+        	svg{
+                width: 900px;
+                height: 900px;
+            }
+        
+        </style>
+    </head>
+    <body>
+        <svg></svg>
+
+        <script type="text/javascript">
+        
+        const mountainLines = d3.line();
+
+        //the original path points for our mountain drawing : "M60, 10 L95,95 L5,95 L30,50 L35,60 L44,35 L50,50 L60,10". d3.line() reads in the line format in that way. 
+        const mt_points = [
+        [60,10],
+        [95,95],
+        [5,95],
+        [30,50],
+        [35,60],
+        [44,35],
+        [50,50],
+        [60,10]
+        ];
+
+        const pathString = mountainLines(mt_points);
+
+        const svg = d3.select("svg");
+
+
+        svg.append("path")
+          .attr("d", pathString)
+          .attr("stroke", "green")
+          .attr("fill", "none")
+          .attr("stroke-weight", "2px");
+          
+
+
+
+
+        </script>
+    </body>
+</html>

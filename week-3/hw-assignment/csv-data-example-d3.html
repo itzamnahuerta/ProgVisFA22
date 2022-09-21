@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>D3 Data Example</title>
+        <script src= "https://d3js.org/d3.v7.min.js"></script>
+        <style type="text/css">
+            body {
+                color: #69B782;
+            }
+        </style>
+    </head>
+    <body>
+        <script>    
+        /*INSTRUCTIONS: run the code in your http-server (nothing will be displayed FYI).
+        Then, uncomment the console.logs below and see what's displayed in the console.
+        I would recommend you also open the actual CSV file to compare/think between the two.*/
+        
+        //Data source: https://www.ncei.noaa.gov/access/billions/events/US/2021-2022?disasters[]=all-disasters
+
+        const margin = 30;
+        const width = 500;
+        const height = 500;
+
+        // get data
+        d3.csv('./data/events-US-2018-2022.csv').then(dataset => {  
+            //format the data so numbers are number format for the items I want to use
+            dataset.forEach(d => {
+                    d.Disaster = d.Disaster;
+                    d["Deaths"] = +d["Deaths"];
+                    d["Total_CPI_Adjusted_Cost_Millions_of_Dollars"] = +d["Total_CPI_Adjusted_Cost_Millions_of_Dollars"];
+            })
+
+            //using columns (a D3 feature with d3.dsv) to identify column names in an array
+            const colNames = dataset.columns;
+            console.log(colNames);
+
+            //using .filter() to filter out data based on a parameter with comparison operator
+            // const cost_of_disasters = data.filter(d=> d["Total_CPI_Adjusted_Cost_Millions_of_Dollars"] >= 10);
+            // console.log("cost of disasters above 10 billion:", cost_of_disasters);
+
+            //using .filter() to filter out based on two parameters with the OR operator   
+            // const nyccaData = data.filter(d => d.Disaster == "Flooding" || d.Disaster == "Wildfire");
+            // console.log("Tresting",nyccaData);
+
+    
+            const maxY = d3.max(dataset, d => d.Deaths)
+            console.log("most expensive disaster $$$$:", maxY)
+
+            const xScale = d3.scaleBand()
+                            .domain(dataset.map(d => d.Disaster))
+                            .range([margin, width - margin])
+                            .paddingInner(.10);
+
+            const yScale = d3.scaleLinear()
+                            .domain([0, maxY]) 
+                            .range([height - margin, margin]);
+
+            const bottomAxis = d3.axisBottom().scale(xScale);
+            const leftAxis = d3.axisLeft().scale(yScale);
+
+            // creating svg element
+            const svg = d3.select("body")
+                        .append("svg")
+                        .attr("width", width)
+                        .attr("height", height)
+
+            // make bars and append data 
+            svg.selectAll("rect")
+                .data(dataset)
+                .enter()
+                .append("rect")
+                .attr("x", d => xScale(d.Disaster))
+                .attr("y", d => yScale(d.Deaths))
+                .attr("width", xScale.bandwidth())
+                .attr("height", d => (height - margin) - yScale(d.Deaths))
+                .attr("fill","#69B782");
+
+            //Implement bottom axis
+            svg.append("g")
+                .attr("transform", "translate(0," + (height - margin) + ")") 
+                .call(bottomAxis); 
+
+            //Implement left axis
+            svg.append("g")
+                .attr("transform", "translate(" + margin + ",0)")
+                .call(leftAxis); 
+            
+            
+            console.log(dataset);
+
+        });
+        </script>
+    </body>
+</html>

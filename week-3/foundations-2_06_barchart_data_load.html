@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Bar Chart Scales and Load Data</title>
+        <script type="text/javascript" src= "https://d3js.org/d3.v7.min.js"></script>
+        <style type="text/css">
+            /*TBD*/
+        </style>
+    </head>
+    <body>
+        <script type="text/javascript">
+                
+        //const dataset;
+        const margin = 30;
+        const width = 500; 
+        const height = 500;   
+        
+        //get the data
+        d3.csv("emails.csv").then(dataset => {
+        //format data
+        dataset.forEach(d => { 
+            d.day = d.day;
+            d.emails = +d.emails; 
+        });
+
+        const maxY = d3.max(dataset, d => d.emails);
+
+        const xScale = d3.scaleBand()
+                        .domain(dataset.map(d => d.day))
+                        .range([margin, width - margin])
+                        .paddingInner(.02);
+        
+        const yScale = d3.scaleLinear()
+                        .domain([0, maxY]) 
+                        .range([height - margin, margin]);
+        
+        const bottomAxis = d3.axisBottom().scale(xScale);
+        const leftAxis = d3.axisLeft().scale(yScale);
+
+        //Create our SVG element
+        const svg = d3.select("body")
+                    .append("svg")
+                    .attr("width", width)
+                    .attr("height", height);
+
+        //Make bars and append data
+        svg.selectAll("rect") 
+            .data(dataset) 
+            .enter()
+            .append("rect")
+            .attr("x", d => xScale(d.day)) 
+            .attr("y", d => yScale(d.emails)) 
+            .attr("width", xScale.bandwidth())
+            .attr("height", d => (height-margin) - yScale(d.emails))
+            .attr("fill", "pink");
+
+        //Implement bottom axis
+        svg.append("g")
+            .attr("transform", "translate(0," + (height - margin) + ")") 
+            .call(bottomAxis); 
+
+        //Implement left axis
+        svg.append("g")
+            .attr("transform", "translate(" + margin + ",0)")
+            .call(leftAxis); 
+        
+        console.log(dataset);
+        
+    });
+        </script>
+    </body>
+</html>

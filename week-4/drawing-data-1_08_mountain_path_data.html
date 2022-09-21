@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>VT Mountain Data Example</title>
+        <script src= "https://d3js.org/d3.v7.min.js"></script>
+        <style type="text/css"> 
+        	svg{
+            width:800px;
+            height:800px;
+          }
+
+          .title {
+            font-size: 16px;
+            font-weight: bold;
+            font-family: sans-serif;
+          }
+
+          .labels{
+            font-size: 14px;
+            font-weight: normal;
+            font-family: sans-serif;
+          }
+
+            
+        
+        </style>
+    </head>
+    <body>
+         <svg></svg> <!--Remember to add the svg here like this if you are applying it above-->
+
+        <script type="text/javascript">
+        
+        //Create data
+        const dataset = [{"mountain": "Mansfield", "height": "4,393"}, {"mountain": "Camels Hump", "height": "4,083"}, {"mountain": "Stratton", "height": "3,940"}, {"mountain": "Mount Snow", "height": "3,586"},{"mountain": "Burke", "height": "3,267"},{"mountain": "Mount Tom", "height": "1,250"}];
+
+        //Color using linear scale, d3 min and max 
+        const maxData = d3.max(dataset, d=>+d.height.replace(",", ""));
+        const minData = d3.min(dataset, d=>+d.height.replace(",", ""));
+        const myColor = d3.scaleLinear()
+                          .domain([minData, maxData])
+                          .range(["#f7fcfd", "#00441b"]);//lightest and darkest green from ColorBrewer "Greens" 
+    
+ 
+        //Drawn with d3.line()                 
+        const mountainGenerator = d3.line();
+        
+
+        //To draw the lines we are using an array to capture the path points. D3 uses the [x,y] of the array as x y for the path. 
+        //The original path points for our mountain drawing: "M60, 10 L95,95 L5,95 L30,50 L35,60 L44,35 L50,50 L60,10"
+        const mt_points = [
+        [60,10],//This is the M point. The rest are Ls. 
+        [95,95],
+        [5,95],
+        [30,50],
+        [35,60],
+        [44,35],
+        [50,50],
+        [60,10]
+        ];
+
+        const pathString = mountainGenerator(mt_points);
+        const row = dataset.length; 
+        //const row = 3; //change row to 3 to see what happens
+        const size = 100;
+        const sizeY =110;//adding this was necessary when we changed row to 3
+
+        const svg = d3.select("svg");
+
+        //making groups
+        const g = svg.selectAll("g")
+                      .data(dataset)
+                      .enter()
+                      .append("g")
+                      .attr("transform", (d,i)=>{
+                        const x = (i % row +1) * size; //change the +1 in the () to +0 or +2 or + 3 to see what happens! 
+                        const y = (Math.floor(i/row)+.55) * sizeY;
+                        return "translate(" + [x,y] + ")";})
+                      
+
+        g.append("path")
+         .attr("d", pathString)
+         .attr("fill", d=> myColor(+d.height.replace(",", "")))
+                      .attr("stroke", "#00441b")
+                      .attr("stroke-width", "1px");
+
+        //Make Labels
+        g.append("text")
+          .attr("x", size/2) //x coordinate
+          .attr("y", size + 5) //y coordinate
+          .attr("text-anchor", "middle") //horizontal text alignment 
+          .attr("fill", "#00441b")
+          .attr("dy", "5px") //y coordinate offset
+          .attr("class","labels")
+          .text(d=>d.mountain); //the text 
+
+        //Note the difference between svg.append text and g.append in this example. 
+        svg.append("text")
+           .attr("x", 400) //x coordinate
+           .attr("y", 40) //y coordinate
+           .attr("text-anchor", "middle") //horizontal text alignment
+           .attr("fill", "#00441b")
+           .attr("class", "title")
+           .text("6 Mountains in Vermont Colored by Height"); //the text 
+        </script>
+    </body>
+</html>

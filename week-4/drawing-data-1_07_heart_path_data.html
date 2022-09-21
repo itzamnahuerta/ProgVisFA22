@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <title>Hearts Drawn with D3 and SVG</title>
+        <script src= "https://d3js.org/d3.v7.min.js"></script>
+        <style type="text/css"> 
+        	svg{
+                width: 800px;
+                height: 800px;
+            }
+        
+        </style>
+    </head>
+    <body>
+        <svg></svg> 
+
+        <script type="text/javascript">
+        
+        const dataset = [{"day": "Monday", "love": "10"}, {"day": "Tuesday", "love": "20"}, {"day": "Wednesday", "love": "30"}, {"day": "Thursday", "love": "40"},{"day": "Friday", "love": "50"}];
+        
+        const maxData = d3.max(dataset, d=>+d.love);
+        const minData = d3.min(dataset, d=>+d.love);
+        const myColor = d3.scaleLinear()
+                          .domain([minData, maxData])
+                          .range(["white", "red"]);
+
+        //the SVG path points for our heart drawing--mind the commas!!!        
+        const heart = ["M100,100 C100,50 175,75 148.5,115 L100,175 L50.5,115 C25,75 100,50 100,100"];
+
+        const row = dataset.length;//
+        const size = 150;
+
+
+        const svg = d3.select("svg");
+
+        const g = svg.selectAll("g")//our group! 
+                      .data(dataset)
+                      .enter()
+                      .append("g")
+                      .attr("transform", (d,i)=>{
+                              const x = (i % row) * size; 
+                              const y = (Math.floor(i/row)+1) * size;
+                              return "translate(" + [x,y] + ")";})
+                      
+
+
+      g.append("path")
+       .attr("d", heart)
+       .attr("fill", d=> myColor(d.love))
+                      .attr("stroke", "red")
+                      .attr("stroke-width", "1px");;
+
+
+       //Make Labels
+      g.append("text")
+        .attr("x", size/2 + 20) //x coordinate
+        .attr("y", size + 40) //y coordinate
+        .attr("text-anchor", "middle") //horizontal text alignment 
+        .attr("font-family", "sans-serif")
+        .attr("dy", "5px") //y coordinate offset
+        .text(d=>d.day); //the text 
+
+       
+
+        </script>
+    </body>
+  </html>
