@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>SVG Oridinal Color Scale</title>
+        <script src= "https://d3js.org/d3.v7.min.js"></script>
+        <style type="text/css"> 
+
+        	svg{
+            width:800px;
+            height:800px;
+          }
+
+
+        </style>
+    </head>
+    <body>
+    	<svg></svg>
+
+        <script type="text/javascript">
+
+        //Create svg canvas
+        const svg = d3.select("svg");
+        const width = 500;
+
+        const dataset = ["A", "B", "C", "D", "E", "F", "G", "H", "I"];
+        const maxData = d3.max(dataset);
+        const minData = d3.min(dataset);
+
+        //use d3.scaleOrdinal for discrete color schemes -- maps a discrete domain to discrete colors
+        const  myColor = d3.scaleOrdinal().domain(dataset)
+                                          .range(d3.schemeSpectral[9]);
+                                          //.range(d3.schemeBlues[9]);//9 sequential but discrete blues
+                                          //.range(d3.schemeCategory10);
+      
+
+        //Create color swatches and append data and colors 
+          svg.selectAll("rect")
+               .data(dataset)
+               .enter()
+               .append("rect")
+               .attr("x", (d,i) => i * (width/dataset.length) + 20)
+               .attr("y", 100)
+               .attr("width", 40)
+               .attr("height", 40)
+               .attr("fill", d => myColor(d));
+               //.style("opacity", .4);//here we've added the opacity!
+
+       
+        </script>
+    </body>
+</html>

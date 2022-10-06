@@ -26,7 +26,7 @@
         </style>
     </head>
     <body>
-         <svg></svg> <!--Remember to add the svg here like this if you are applying it above-->
+        <svg></svg> <!--Remember to add the svg here like this if you are applying it above-->
 
         <script type="text/javascript">
        
@@ -97,7 +97,7 @@
          .attr("stroke", "#00441b")
          .attr("stroke-width", "1px");
 
-        //Make Labels
+        // Make Labels
         g.append("text")
           .attr("x", size/2) //x coordinate
           .attr("y", size + 5) //y coordinate
@@ -110,13 +110,13 @@
 
 
         //Make Title (Note the difference between svg.append text and g.append text) 
-        svg.append("text")
-           .attr("x", 450) //x coordinate
-           .attr("y", 40) //y coordinate
-           .attr("text-anchor", "middle") //horizontal text alignment
-           .attr("fill", "#00441b")
-           .attr("class", "title")
-           .text("Mountains in Vermont in 3 Groups (Darker Color = Greater Height)"); //the text 
+        // svg.append("text")
+        //    .attr("x", 450) //x coordinate
+        //    .attr("y", 40) //y coordinate
+        //    .attr("text-anchor", "middle") //horizontal text alignment
+        //    .attr("fill", "#00441b")
+        //    .attr("class", "title")
+        //    .text("Mountains in Vermont in 3 Groups (Darker Color = Greater Height)"); //the text 
 
         });
         

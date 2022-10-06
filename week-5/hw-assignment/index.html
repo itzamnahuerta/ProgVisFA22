@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>HW Assignment</title>
+        <script type="text/javascript" src= "https://d3js.org/d3.v7.min.js"></script>
+        <style type="text/css">
+            body{
+                background-color: #f2f0f7;
+            }
+            svg{
+            width:1200px;
+            height:1200px;
+            }
+            .title {
+            font-size: 16px;
+            font-weight: bold;
+            font-family: sans-serif;
+            display: flex;
+            align-items: center;
+            border: 3px solid red;
+            }
+
+            .labels{
+            font-size: 13px;
+            font-weight: normal;
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            border: 3px solid red;
+            }
+            div.tooltip {
+            position: absolute;	
+            text-align: center;	
+            width: 300px;	
+            height: 200px;		
+            padding: 15px;	
+            font: 14px Helvetica;	
+            background: #dadaeb;	
+            border: 0px;					
+            border-radius: 8px;
+            text-align: center;
+            }
+        
+        </style>
+    </head>
+    <body>
+        <svg></svg>
+
+        <script type="text/javascript">
+
+            // get csv data
+            d3.csv("./UPDATED_min_max_us_diplomat_gifts.csv").then(dataset => {
+                dataset.forEach(d => {
+                    console.log(d)
+                    d.donor_country = d.donor_country;
+                    d.max_gift_description = d.max_gift_description;
+                    d.max_gift_donor = d.max_gift_donor;
+                    d.max_gift_recipient = d.max_gift_recipient;
+                    d.max_gift_value_usd = d.max_gift_value_usd;
+                    d.max_gift_year_received = d.max_gift_year_received;
+                    d.min_gift_description = d.min_gift_description;
+                    d.min_gift_donor = d.min_gift_donor;
+                    d.min_gift_year_received = d.min_gift_year_received;
+                    d.min_recipient = d.min_recipient;
+                    d.min_value_usd = d.min_value_usd;
+                    d.total_cost_gifts_received = d.total_cost_gifts_received;
+                    d.total_gifts_given = d.total_gifts_given;
+
+                })
+                
+
+                // most expensive gifts given to us diplomats by country
+                const maxData = d3.max(dataset, d => d.max_gift_value_usd);
+                console.log("max:",maxData);
+                const max_minData = d3.min(dataset, d => d.max_gift_value_usd);
+                console.log("min:",max_minData);
+
+
+                // the lowest value gifts given to us diplomats by 15 most popular donor countries 
+                const min_max_data = d3.max(dataset, d => d.min_value_usd)
+                const min_data = d3.min(dataset, d => d.min_value_usd)
+
+
+                // color using scales , d3 min and max by max value_usd 
+                const myColor = d3.scaleQuantize()
+                                .domain([max_minData, maxData])
+                                .range(["#9e9ac8", "#756bb1", "#54278f"]);
+                
+
+                // Couldnt figure out how to load a svg to d3 https://www.fabiofranchino.com/blog/how-to-inject-external-svg-with-d3/
+
+                const gifts_icon = d3.xml("./gift-icon.svg");
+                const country_icon = d3.xml('./country-icon.svg');
+
+                const giftGenerator = d3.line();
+                const g_points = [
+                [60,10],//This is the M point. The rest are Ls. 
+                [60,95],
+                [0,95],
+                [0,60],
+                [0,35],
+                [60,10]
+                ];
+
+                const pathString = giftGenerator(g_points);
+                const perRow = 5;
+                const size = 160;
+                const sizeY= 180;
+
+
+                const div = d3.select("body")
+                    .append("div")  // declare the tooltip div 
+                    .attr("class", "tooltip")              // apply the 'tooltip' class
+                    .style("opacity", 0);    
+
+
+                const svg = d3.select("svg");
+
+                // joining data to the groups 
+                const g = svg.selectAll("g")
+                            .data(dataset)
+                            .enter()
+                            .append("g")
+                            .attr("transform", (d,i) => {
+                                const x = (i % perRow + 2) * size;
+                                const y = (Math.floor(i/perRow) +.60) * sizeY;
+                                return "translate(" + [x,y] + ")";
+                            })
+
+
+                // append to the dom - creating a shape for each of the datapoints 
+                g.append("path")
+                .attr("d", pathString)
+                .attr("fill", d=> myColor(d.max_gift_value_usd))
+                .attr("stroke", "00441b")
+                .attr("stroke-width", "0.75")
+                .attr("pointer-events","visible")
+
+                // https://stackoverflow.com/questions/67208402/cannot-get-d3-onmouseover-to-work
+                .on("mouseover", function(event,d) {
+                    div.transition()
+                        .duration(200)
+                        .style("opacity", .9);
+                        div.html("<br/>" +" Gift Description: " +d.max_gift_description + "<br/> <br/>" +  "Recepient: " + d.max_gift_recipient)
+                        .style("left", (event.pageX) + "px")
+                        .style("top", (event.pageY - 28) + "px");
+                    })
+                .on("mouseout", function(d) {
+                    div.transition()
+                        .duration(500)
+                        .style("opacity", 0.2);
+                    });
+
+                g.append("text")
+                    .attr("x", size/5) //x coordinate
+                    .attr("y", size - 40) //y coordinate
+                    .attr("text-anchor", "middle") //horizontal text alignment 
+                    .attr("dx", "2px")//x coordinate offset
+                    .attr("dy", "5px") //y coordinate offset
+                    .attr("class","labels")
+                    .attr("fill", "#54278f")
+                    .text(d => d.max_gift_value_usd)//the text 
+                g.append("text")
+                    .attr("x", size/5) //x coordinate
+                    .attr("y", size - 20) //y coordinate
+                    .attr("text-anchor", "middle") //horizontal text alignment 
+                    .attr("dx", "2px")//x coordinate offset
+                    .attr("dy", "5px") //y coordinate offset
+                    .attr("class","labels")
+                    .attr("fill", "#54278f")
+                    .text(d => d.donor_country)//the text 
+                
+                svg.append("text")
+                    .attr("x", 450) //x coordinate
+                    .attr("y", 40) //y coordinate
+                    .attr("text-anchor", "middle") //horizontal text alignment
+                    .attr("fill", "#54278f")
+                    .attr("class", "title")
+                    .text("The Most Expensive Gifts Given to US Diplomats by the 15 Most Popular Donor Countries in USD (2001-2018)"); //the text 
+
+
+                })
+        </script>
+    </body>
+</html>

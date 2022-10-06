@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>SVG Rect Linear Gradient</title>
+        <script src= "https://d3js.org/d3.v7.min.js"></script>
+        <style type="text/css"> 
+
+        	svg{
+            width:500px;
+            height:500px;
+          }
+
+          /*Reminder: .classname is how you call a CSS class*/
+          .stop-left{
+          	stop-color: #EFEDF5; /*a light purple from ColorBrewer Purples*/
+          }
+
+          .stop-right{
+          	stop-color: #756BB1; /*a dark purple from ColorBrewer Purples*/ 
+          }
+
+        </style>
+    </head>
+    <body>
+    	<svg></svg>
+
+        <script type="text/javascript">
+
+        //We're only using D3 as a frame here ¯\_(ツ)_/¯	
+
+        /*For more information: check out MDNs <linearGradient> page  https://developer.mozilla.org/en-US/docs/Web/SVG/Element/linearGradient*/ 
+
+
+        //Create svg canvas
+        const svg = d3.select("svg");
+
+        //create svg defs element and the gradient 
+        const defs = svg.append("defs");
+
+        const gradient = defs.append("linearGradient")
+						   	 .attr("id", "svgGradient");//this creates a CSS id called svgGradient! 
+
+		  //Create the CSS 2 stops for the gradient. 
+        //NOTE: alternatively you might have called the stop classes start and end if you were applying the gradient to a line, for example, so that the naming is clearer. 
+
+			gradient.append("stop")
+				    .attr("class", "stop-left") //this creates a CSS class called stop-left! 
+				    .attr("offset", "0");
+
+			gradient.append("stop")
+				    .attr("class", "stop-right") //this creates a CSS class called stop-right!
+				    .attr("offset", "1");
+ 
+        //Create rect and append gradient
+        	   svg.append("rect")
+                .attr("x", 100)
+                .attr("y", 100)
+                .attr("width", 400)
+        	      .attr("height",50)
+        	      .attr("fill", "url(#svgGradient)")//call our our id. If you were using this in the CSS above, you would have not included the quotes. 
+        	      .attr("stroke-width", ".5px")
+        	      .attr("stroke", "#756BB1");
+
+        </script>
+    </body>
+</html>

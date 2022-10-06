@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>SVG Sequential Color Scale</title>
+        <script src= "https://d3js.org/d3.v7.min.js"></script>
+        <style type="text/css"> 
+
+        	svg{
+            width:800px;
+            height:800px;
+          }
+
+
+        </style>
+    </head>
+    <body>
+    	<svg></svg>
+
+        <script type="text/javascript">
+
+        //Create svg canvas
+        const svg = d3.select("svg");
+        const w = 500;
+
+        const dataset = [10, 20, 30, 40, 50, 60, 70, 80, 90];
+        const maxData = d3.max(dataset);
+        const minData = d3.min(dataset);
+
+        //use d3.scaleSequential for continuous color schemes -- maps continous domain to continuous range with .interpolator()
+        const  myColor = d3.scaleSequential()
+        				   .domain([minData,maxData])
+        				   .interpolator(d3.interpolateInferno);
+        				   //.interpolator(d3.interpolateTurbo);
+       					   //.interpolator(d3.interpolateGreens);
+       					   //.interpolator(d3.interpolateBuPu);
+       					   //.interpolator(d3.interpolateWarm);
+       					   //.interpolator(d3.interpolate("red", "yellow"));
+
+                                           
+
+        //Create color swatches and append data and colors 
+          svg.selectAll("rect")
+               .data(dataset)
+               .enter()
+               .append("rect")
+               .attr("x", (d,i) => i * (w/dataset.length) + 20)
+               .attr("y", 100)
+               .attr("width", 40)
+               .attr("height", 40)
+               .style("fill", d => myColor(d));
+               //.style("opacity", .4);//here we've added the opacity!
+
+       
+        </script>
+    </body>
+</html>

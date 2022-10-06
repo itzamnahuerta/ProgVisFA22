@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Bar Chart Example</title>
+        <script src= "https://d3js.org/d3.v7.min.js"></script>
+        <style type="text/css">
+            
+        .title {
+            font-size: 20px;
+            font-weight: bold;
+            font-family: sans-serif;
+          }
+
+        .label{
+            font-size: 14px;
+            font-weight: normal;
+            font-family: sans-serif;
+          }
+
+        .description {
+            font-size: 14px;
+            font-weight: normal;
+            font-family: sans-serif;
+        }
+
+        .bars.opt1 {
+        	fill: #610E33;
+          }
+
+        .bars.opt2 {
+        	fill: url(#circles);
+        }
+
+        </style>
+    </head>
+    <body>
+    <!-- We are adding this Div here to reference for the vis. We are appending an SVG per usual, but are also adding an SVG below too to hold a pattern.-->
+    <div id="vis"></div>
+    <!-- Make your simple pattern. See MDN's <pattern> page for information https://developer.mozilla.org/en-US/docs/Web/SVG/Element/pattern -->
+    <!-- With <defs> we are storing our pattern be used. Objects inside <defs> aren't rendered until referenced.-->
+    <!--Thanks to Sarah Fossheim for inspiration for this pattern!-->
+    <svg width="0" height="0">
+    	<defs><pattern id="circles" x="0" y="0" width="6" height="5" patternUnits="userSpaceOnUse">
+    		<rect fill="#F1FFFA" x="0" y="0" width="6" height="5"></rect>
+    		<circle fill="#0a4b79" cx="2" cy="2" r="2"></circle>
+    	</pattern></defs></svg>
+
+    <script type="text/javascript">
+
+                
+                const margin = 55; 
+                const width = 900; 
+                const height = 500;                
+
+                //dataset with random #s! 
+                const dataset = [ 
+                             {"day": "Monday", "emails": "125"},
+                             {"day": "Tuesday", "emails": "50"},
+                             {"day": "Wednesday", "emails": "75"},
+                             {"day": "Thursday", "emails": "100"},
+                             {"day": "Friday", "emails": "25"},
+                             {"day": "Saturday", "emails": "60"},
+                             {"day": "Sunday", "emails": "30"}  
+                            ];
+
+                const maxY = d3.max(dataset, d => +d.emails);
+
+                const xScale = d3.scaleBand()
+                                 .domain(dataset.map(d => d.day))
+                                 .range([margin, width - margin])
+                                 .paddingInner(.03);
+                
+                const yScale = d3.scaleLinear()
+                                 .domain([0, maxY]) 
+                                 .range([height - margin, margin]);
+                
+                const bottomAxis = d3.axisBottom()
+                                     .scale(xScale);
+                
+                const leftAxis = d3.axisLeft()
+                                   .scale(yScale);
+
+                
+            /*Create our SVG element with a few extra features for screen readers
+            NOTE: The SVG equivalent to <alt> which is used for <img>:use <title> and <desc> along with "aria-labelledby" attr. See: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-labelledby_attribute*/ 
+               const svg = d3.select("#vis")
+                             .append("svg")
+                             .attr("width", width)
+                             .attr("height", height)
+                             .attr("role","img")//this is to ensure scren readers catch the SVG
+                             .attr("aria-labelledby", "title desc");//we are giving the IDs of <title> and <desc> to ensure the screen readers can access <title> and <desc>
+
+            /*SVG <title> element: short text description. 
+            NOTE: does not display on image. BUT this often does display as a tool tip. Another option is to reference visible text with an "aria-labbeledby" element. See: https://developer.mozilla.org/en-US/docs/Web/SVG/Element/title*/
+                svg.append("title")
+                   .text("Bar Chart Example For Accessibility Week")
+                   .attr("id", "title")//the IDs can be anything 
+
+            /*SVG <desc> element: a longer text description. 
+            NOTE: does not display on image. An ID is provided to be referenced by aria-labelledby. See: https://developer.mozilla.org/en-US/docs/Web/SVG/Element/desc*/
+                svg.append("desc")
+                   .text("A Bar Chart representing total emails received per day for one week. Fill is dependent on whether greater than 50 emails have been received or not. This is an example and the data is false.")
+                   .attr("id", "desc")
+
+            //Make bars and append data
+                svg.selectAll(".bars") 
+                   .data(dataset) 
+                   .enter()
+                   .append("rect")
+                   .attr("class", d => +d.emails > 50 ? "bars opt1" : "bars opt2")//set the class using the JS conditional operator (which determines just the fill here) based on the number of emails. Set to "bars opt1" if condition is true and set to "bars opt 2" if condition is false 
+                   .attr("x", d => xScale(d.day)) //use scaled x and the data we want
+                   .attr("y", d => yScale(+d.emails)) //use scaled y and the data we want
+                   .attr("width", xScale.bandwidth()) //width of bars 
+                   .attr("height", d => (height-margin) - yScale(+d.emails));
+                   // .attr("rx", 5) //  x corner curve radius
+                   // .attr("ry", 5); // y corner curve radius
+
+
+            //Implement bottom axis
+                svg.append("g")
+                   .attr("transform", "translate(0," + (height - margin) + ")") 
+                   .call(bottomAxis); 
+
+
+            //Implement left axis
+                 svg.append("g")
+                    .attr("transform", "translate(" + margin + ",0)")
+                    .call(leftAxis); 
+
+
+            //Add chart title
+                svg.append("text")
+                   .attr("x", width/2) //x coordinate
+                   .attr("y", 20) //y coordinate
+                   .attr("text-anchor", "middle") //horizontal text alignment
+                   .attr("fill", "black")
+                   .attr("class", "title")
+                   .text("Total Emails Per Day for One Week"); //the text 
+               
+
+            //Add any required explanatory text
+                 svg.append("text")
+                    .attr("x", width/2) //x coordinate
+                    .attr("y", 45) //y coordinate
+                    .attr("text-anchor", "middle") //horizontal text alignment
+                    .attr("fill", "black")
+                    .attr("class", "description")
+                    .text("Solid dark bar fill represents days where more than 50 emails were received."); //the text 
+
+
+            //Add y-axis label
+            	svg.append("text")
+            	   .attr("x", -height/2)
+            	   .attr("y", 15)
+            	   .attr("text-anchor", "middle")
+            	   .attr("transform", "rotate(-90)")
+            	   .attr("fill", "black")
+                   .attr("class", "label")
+                   .text("Total Emails"); //the text 
+
+
+            
+        </script>
+    </body>
+</html>
