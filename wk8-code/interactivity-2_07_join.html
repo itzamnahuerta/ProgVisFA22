@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>EUE Example</title>
+        <script src= "https://d3js.org/d3.v7.min.js"></script>
+        <style type="text/css">  
+                
+                svg{
+                  width:700px;
+                  height:700px;
+                }
+
+        </style>
+    </head>
+    <body>
+        <svg></svg>
+        <script type="text/javascript">
+            
+            let dataset; //let! 
+            const myColor = d3.scaleOrdinal(d3.schemeDark2);
+
+            function updateBars(){
+              const height = 700;
+              const width = 700;
+              let barWidth = width/dataset.length; //let! 
+
+              d3.select("svg")
+                .selectAll("rect")
+                .data(dataset)
+                .join("rect") // see how we are using .join() here instead of .enter().append()
+                .attr("fill", (d, i) => myColor(i))
+                .transition()
+                .ease(d3.easeLinear)
+                .attr("x", (d, i) => i * barWidth)
+                .attr("y", d=> height - d)
+                .attr("height", d => d)
+                .attr("width", barWidth - 2);
+                
+            }
+
+            function updateData(){
+              const barRange = (30 - 5) // max - min
+              const dataMax = 695
+              //                       [0, 1)  range (max - min)  min
+              let numberBars = Math.floor(Math.random() * barRange + 5)
+              dataset = d3.range(numberBars).map(d => Math.random() * dataMax)
+            }
+
+            d3.select("svg").on("click", (event,d)=>{
+              updateData()
+              updateBars()
+              console.log(dataset)
+            })
+            
+            updateData()
+            updateBars()
+
+            console.log(dataset);
+
+        </script>
+    </body>
+</html>

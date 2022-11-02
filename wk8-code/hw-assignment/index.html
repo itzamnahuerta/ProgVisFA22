@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <title>Interactivity HW assignment</title>
+        <script src= "https://d3js.org/d3.v7.min.js"></script>
+        <style type="text/css"> 
+             @import url('https://fonts.googleapis.com/css2?family=Trispace:wght@100&display=swap');
+
+            body{
+                background-color: #4E4D50 ;
+                font-family: 'Trispace', sans-serif;
+                color: white;
+                display:flex;
+                flex-direction: column;
+                align-items: center;
+
+            }
+        	svg{
+                width: 100%;
+                height: 1200px;
+                /* border: 1px solid blue; */
+            }
+            #container {
+                border: 2px solid sandybrown; 
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            .slider {
+                display: flex;
+                width: 30%;
+                height:20px;
+                border-radius: 5px;
+                background-color:#d3d3d3;
+                outline: none;
+                opacity: 0.8;
+            }
+            .slider::-moz-range-thumb{
+              width: 25px;
+              height: 25px;
+              border-radius: 50%;
+              background: #CBC7CF;
+              cursor: pointer;
+            }   
+            datalist{
+              display: flex;
+              width: 25%;
+              justify-content: space-between;
+              margin-top: -10px;
+              padding-top: 0px;
+            }
+            option{
+              width: 25ex;
+              display: flex;
+              justify-content: center;
+              height: 30px;
+              align-items: end;
+            }
+ 
+
+        </style>
+    </head>
+    <body>
+        <h1> Natural Disasters: Wilfires</h1>
+        <div id="container">
+            <input id="mySlider" type="range" min="1376" max="27840", step="2000" value="0" class="slider" list="list" />
+            <datalist id="list">
+            <option>1400</option>
+            <option>1600</option>
+            <option>1800</option>
+            <option>2000</option>
+            <option>2200</option>
+            <option>2400</option>
+            <option>2600</option>
+            <option>2800</option>
+            </datalist>
+        </div>
+        <svg></svg>
+
+        <script type="text/javascript">
+        
+        //SVG path for the wildfire     
+        const wildfire = ["M34.86 36.62 50.84 58.52 45.46 57.64 50.48 65.68 45.28 65.24 50.58 73.36 36.88 73.36 38.2 88.74A20 20 90 0046.48 88.1 20 20 90 0047.6 87.72 20 20 90 0048.48 87.4 20 20 90 0049.48 87.02 20 20 90 0051.36 86.12 20 20 90 0053.76 84.68 20 20 90 0055.38 83.44 20 20 90 0056.86 82.06 20 20 90 0058.48 80.26 20 20 90 0059.78 78.4 20 20 90 0060.46 77.26 20 20 90 0061 76.32 20 20 90 0061.56 75.26 20 20 90 0062.56 72.78 20 20 90 0063.56 68.6 20 20 90 0063.84 65.18 20 20 90 0063.68 60.64 20 20 90 0063.1 57.34 20 20 90 0061.82 53.66 20 20 90 0060.06 50.22C59.706 49.566 59.354 48.914 59 48.26Q58.51 47.24 58.02 46.22T55.6 39.02 55.32 28.8 58.26 22.3 51.78 23.76 43.14 33.18 41.14 26.42 45.02 7.62 31.24 13.26A20 20 90 0027.38 16.1Q27.01 16.46 26.64 16.82T22.82 21.34 15.38 39.06 13.26 35.7Q13.26 35.44 13.26 35.18 13.23 34.96 13.2 34.74T12.44 35.2 9.22 39.82 5.06 49.38 3.62 62.96 7.1 76.7 17.2 85.94 31.5 88.68L32.38 73.36 18.86 73.3 24.36 65.42 18.58 65.72 24.22 57.98 18.64 58.34Z"]
+
+        // import csv dataset
+        d3.csv("./data/wildfire_disasters.csv").then(dataset => {
+            console.log("the overall data", dataset)
+            dataset.forEach(d => {
+                d.begin_date = d.begin_date;
+                d.begin_year = d.begin_year;
+                d.begin_day = d.begin_day;
+                d.end_year = d.end_year;
+                d.deaths = d.deaths;
+                d.disaster = d.disaster;
+                d.name = d.name;
+                d.total_cpi_adjusted_cost_by_millions = d.total_cpi_adjusted_cost_by_millions
+            })
+
+        const perRow = 5;
+        const size = 160;
+        const sizeY= 180;
+
+        const svg = d3.select("svg");
+
+        const g = svg.selectAll("g")
+                        .data(dataset)
+                        .enter()
+                        .append("g")
+                        .attr("transform", (d,i) => {
+                                const x = (i % perRow + 2) * size;
+                                const y = (Math.floor(i/perRow) +.60) * sizeY;
+                                return "translate(" + [x,y] + ")";
+                            });
+
+        const wildfires = g.append("path")     
+                        .attr("d", wildfire)
+                        .attr("width", 600)
+                        .attr("height", 600)
+                        .attr("fill", "#CBC7CF");
+        
+        
+        d3.select("input")
+            .on("change", (event, d) => {
+
+                const num = event.currentTarget.value;
+                console.log("current value", event.currentTarget.value)
+
+                wildfires.attr("fill","#CBC7CF")
+                    .filter(d => d <= num)
+                    .attr("fill","gold")
+            })
+
+        })
+        </script>
+    </body>
+</html>

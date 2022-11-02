@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Circle Slider</title>
+        <script src= "https://d3js.org/d3.v7.min.js"></script>
+        <style type="text/css"> 
+            svg{
+                width:1000px;
+                height:500px;
+                margin-left: auto; 
+                margin-right: auto;
+                display: block;
+                }
+            .slider{
+              width: 25%;
+              height:15px;
+              border-radius: 5px;
+              background: #d3d3d3;
+              outline: none;
+              opacity: 0.8;
+            }
+            .slider::-moz-range-thumb{
+              width: 25px;
+              height: 25px;
+              border-radius: 50%;
+              background: midnightblue;
+              cursor: pointer;
+            }    
+            datalist{
+              display: flex;
+              width: 25%;
+              justify-content: space-between;
+              margin-top: -10px;
+              padding-top: 0px;
+            }
+
+            option{
+              width: 23ex;
+              display: flex;
+              justify-content: center;
+              height: 30px;
+              align-items: end;
+            }
+
+      </style>
+    </head>
+    <body>
+        <svg></svg>
+        <div id="container">
+        <input id="mySlider" type="range" min="0" max="50" step="10" value="0" class="slider" list="list">
+        <datalist id="list">
+          <option>0</option>
+          <option>10</option>
+          <option>20</option>
+          <option>30</option>
+          <option>40</option>
+          <option>50</option>
+        </datalist>
+        </div>
+        <script type="text/javascript">
+        
+        const w = 1000;
+        const h = 500;
+
+        const dataset = [10, 20, 30, 40, 50];
+
+        const svg = d3.select("svg");
+
+        const circles = svg.selectAll("circle")
+                           .data(dataset)
+                           .enter()
+                           .append("circle")
+                           .attr("r", d => d)
+                           .attr("cx", (d,i) => i * (w/dataset.length) + 20)
+                           .attr("cy", h/2)
+                    	     .attr("fill", "midnightblue");
+
+        //on a change to the slider change the color of the circles by using .filter()
+        d3.select("input")
+          .on("change", (event, d) => {
+            
+            const num = event.currentTarget.value;
+           
+            circles.attr("fill", "midnightblue")
+               .filter(d => d <= num)
+               .attr("fill", "gold");
+                   
+          });
+
+        </script>
+    </body>
+</html>

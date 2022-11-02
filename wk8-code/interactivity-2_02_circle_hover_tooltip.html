@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Circle Data Hover Tooltip</title>
+        <script src= "https://d3js.org/d3.v7.min.js"></script>
+        <style type="text/css"> 
+            
+            svg{
+            width:1000px;
+            height:1000px;
+            margin-left: auto; 
+            margin-right: auto;
+            display: block;
+          }
+          
+
+          /*use CSS to create highlight using hover*/
+          .circles:hover{
+            fill: #FFC100;
+          }
+          
+          /*style your tooltip*/
+          #tooltip{
+            position: absolute;
+            width: 70px;
+            height: 30px;
+            padding: 2px;    
+            text-align: center; 
+            font-family:sans-serif;
+            font-size: 12px;
+            font-weight: 550;
+            background: powderblue; 
+            border-radius: 8px;
+          }
+
+        </style>
+    </head>
+    <body>
+        <script type="text/javascript">
+
+        const w = 1000;
+        const h = 800;
+        
+        // //original dataset
+        const dataset = [{"name": "A", "val": 100}, {"name": "B", "val": 200}, {"name": "C", "val": 300}, {"name": "D", "val": 400}, {"name": "E", "val": 500}, {"name": "F", "val": 600}, {"name": "G", "val": 700}];
+
+        //colorscale and radius scale 
+        const myColor = d3.scaleSequential()
+                          .domain(d3.extent(dataset, d => d.val))
+                          .interpolator(d3.interpolateBlues);
+
+        const radScale = d3.scaleLinear()
+                           .domain(d3.extent(dataset, d => d.val)) //d3.extent computes the min AND max 
+                           .range([10, 50]);
+        
+        //tooltip (positioned outside of SVG)
+        const tooltip =d3.select("body")
+                         .append("div")
+                         .attr("id", "tooltip")
+                         .style("opacity", 0);
+        //svg 
+        const svg = d3.select("body").append("svg");
+
+        //Create circles and append data and colors 
+        const circles = svg.selectAll("circle")
+           .data(dataset)
+           .enter()
+           .append("circle")
+           .attr("class", "circles")
+           .attr("r", d => radScale(d.val))
+           .attr("cx", (d,i) => i * (w/dataset.length) + 30)
+           .attr("cy", h/3)
+           .attr("fill", d=> myColor(d.val))
+           .attr("stroke",  "#08306B")
+           .attr("stroke-width", ".4px")
+           .on("mouseover", (event, d)=> {
+             d3.select("#tooltip")
+               .transition()
+               .duration(300)//milliseconds!
+               .style("opacity", 1)
+               .style("left", (event.pageX + 2) + "px")//x coordinate of mouse
+               .style("top", (event.pageY + 2) + "px")//y coordinate of mouse
+        tooltip.html("Value: " + "<br>" + d.val);//setting the html here for the <br>
+               //.text("Value: " + d.val);  // note: you could just do the .text() per usual
+            })     
+          .on("mouseout", (event, d)=>{
+            d3.select("#tooltip")
+              .transition()
+              .style("opacity", 0);
+            })
+          .on("mousemove", (event, d) =>{
+            d3.select("#tooltip")
+              .style("left", (event.pageX + 2) + "px")
+              .style("top", (event.pageY + 2) + "px")
+          });
+
+        </script>
+    </body>
+</html>

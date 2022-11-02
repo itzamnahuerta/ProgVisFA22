@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Circle Data Update Example</title>
+        <script src= "https://d3js.org/d3.v7.min.js"></script>
+        <style type="text/css"> 
+        	
+        button{
+            background-color: #f7fbff; /*we are styling our button up here in CSS just like our SVG!*/
+            color: #08306b; 
+            font-family: Helvetica;
+            font-size: 1em;
+            border-radius: 9px;
+            box-shadow: none;
+            display: inline-block;
+            text-align: center;
+          }
+
+            svg{
+            width:1000px;
+            height:1000px;
+            margin-left: auto; 
+            margin-right: auto;
+            display: block;
+          }
+
+        </style>
+    </head>
+    <body>
+        <button>Click to Update the Example</button>  <!--a button-->
+        <svg></svg>
+        <script type="text/javascript">
+        const w = 1000;
+        const h = 800;
+        
+        
+        //original dataset
+        let dataset = [100, 200, 300, 400, 500, 600, 800]; //see how we used let here instead of const!
+
+
+        //colorscale and radius scale (we cannot just set the r to d=>d because our data values are too large!)
+        const maxData = d3.max(dataset);
+        const minData = d3.min(dataset);
+        const myColor = d3.scaleSequential()
+                          .domain([minData,maxData])
+                          .interpolator(d3.interpolateBlues);
+
+        const radScale = d3.scaleLinear()
+                           .domain(d3.extent(dataset)) //d3.extent computes the min AND max values of dataset instead of using d3.min and d3.max
+                           .range([10, 50]);
+
+
+        //svg 
+        const svg = d3.select("svg");
+
+
+        //Create circles and append data and colors 
+        svg.selectAll("circle")
+           .data(dataset)
+           .enter()
+           .append("circle")
+           .attr("r", d =>radScale(d))
+           .attr("cx", (d,i) => i * (w/dataset.length) + 30)
+           .attr("cy", h/3)
+    	     .attr("fill", d=> myColor(d))
+           .attr("stroke",  "#08306B")
+           .attr("stroke-width", ".4px");
+
+        console.log(dataset);
+
+        //NEW: SIMPLE UPDATE, TRANSITION(S), and EASING:
+
+        //create new dataset to apply on the mouse click of a button
+        d3.select("button")
+          .on("click", (event,d)=> {
+
+          /*This is the new data that we want to display. Also, notice how we did not use a variable declaration here as we are updating the previosly existing variable we created with "let"*/
+            
+            dataset = [700, 600, 400, 200, 400, 600, 800]; 
+
+          /*Copy and paste here the attr() that will need to be updated. HINT: if there were data labels that are representing values, those kinds of things would need to be updated too!*/
+           
+            svg.selectAll("circle")
+               .data(dataset)
+               .transition() //to animate your transitions
+               //.duration(2000) //this determines how long the transition takes (be sure to include it after .transition()). These numbers are in milliseconds (1000ms = 1s)
+               //.delay(400)
+               //.ease(d3.easeLinear) 
+               //.ease(d3.easeBounceIn)
+               //.ease(d3.easeElasticIn)
+               .attr("r", d =>radScale(d))
+               .attr("cx", (d,i) => i * (w/dataset.length) + 50)
+               .attr("fill", d=> myColor(d));
+
+              console.log(dataset);
+
+          });
+
+        //  //And, what if we wanted the transitions to happen in steps? You can do multiple and chain them together. 
+
+        //     svg.selectAll("circle")
+        //        .data(dataset)
+        //        .transition() //transition 1 to change r
+        //        .duration(2000) //this determines how long the transition takes (be sure to include it after .transition()). These numbers are in milliseconds (1000ms = 1s)
+        //        .attr("r", d =>radScale(d))
+        //        .transition() //transition 2 to change cx
+        //        .duration(2000) 
+        //        .attr("cx", (d,i) => i * (w/dataset.length) + 50)
+        //        .transition() //transition 3 to change fill
+        //        .duration(2000) 
+        //        .attr("fill", d=> myColor(d));
+
+        //   console.log(dataset);
+
+        //   });
+
+
+        </script>
+    </body>
+</html>

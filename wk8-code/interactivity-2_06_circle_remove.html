@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Circle Remove</title>
+        <script src= "https://d3js.org/d3.v7.min.js"></script>
+        <style type="text/css"> 
+            
+            svg{
+                width:1000px;
+                height:500px;
+                margin-left: auto; 
+                margin-right: auto;
+                display: block;
+                }
+            p{
+            	color: rgb(94, 79, 162);
+            	font-family: sans-serif;
+            	font-size: 25px;
+            	font-weight: 375;
+            }
+
+            .nums{
+                border-color: rgb(94, 79, 162);
+                border-radius: 3px;
+                border-width: 1.5px;
+            }
+
+      </style>
+    </head>
+    <body>
+    	<p>Remove Circles Less Than or Equal to a Given Value</p>
+        <div id="container">
+        <input id="myNums" type="number" name="Filter by Values" min="0" max="50" step="10" value="0" class="nums">
+        </div>
+        <svg></svg>
+        <script type="text/javascript">
+        
+        const w = 1000;
+        const h = 500;
+
+        const dataset = [{"circ": "A", "val":10}, {"circ": "B", "val":20}, {"circ": "C", "val":30}, {"circ": "D", "val":40}, {"circ": "E", "val":50}];
+        
+        const minmaxData = d3.extent(dataset, d=> +d.val);
+
+        const  myColor = d3.scaleSequential()
+                           .domain(minmaxData)
+                           .interpolator(d3.interpolateSpectral);
+
+        const svg = d3.select("svg");
+
+        //select our circles
+        const circles = svg.selectAll("circle")
+                           .data(dataset, d=>+d.val)
+				           .join("circle") 
+				           //we are using .join() instead of .enter() and .append() this will allow for updates and/or exits(remove) as needed
+				           .attr("r", d => +d.val)
+				           .attr("cx", (d,i) => i * (w/dataset.length) + 20)
+				           .attr("cy", h/2)
+				           .attr("fill", d => myColor(+d.val));
+	 
+        d3.select("input")
+          .on("change", (event,d) => {
+                                
+            const num = event.currentTarget.value;
+            
+            const remove = circles.filter(d => +d.val <= num);
+                                //  .transition()
+                                //  .duration(750)
+                                //  .attr("fill", "black"); //<<this is how we had changed colors below VV is how we simply remove instead 
+
+                                d3.selectAll(remove)
+                                   .transition()
+                                   .remove();
+
+            console.log(dataset);
+            console.log(remove);
+                            });
+
+
+        </script>
+    </body>
+</html>

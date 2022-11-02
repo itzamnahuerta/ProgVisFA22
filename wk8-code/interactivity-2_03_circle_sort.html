@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Circle Sort</title>
+        <script src= "https://d3js.org/d3.v7.min.js"></script>
+        <style type="text/css"> 
+            
+            /*align your SVG to the center of the screen to match the center aligned text*/
+            svg{
+            width:1000px;
+            height:500px;
+            margin-left: auto; 
+            margin-right: auto;
+            display: block;
+          }
+
+          /*use CSS to create highlight using hover*/
+          .circles:hover{
+            fill: #FFC100;
+          }
+          
+        </style>
+    </head>
+    <body>
+        <script type="text/javascript">
+
+        const w = 1000;
+        const h = 500;
+        
+        let dataset = [{"name": "A", "val": 500}, {"name": "B", "val": 200}, {"name": "C", "val": 700}, {"name": "D", "val": 400}, {"name": "E", "val": 100}, {"name": "F", "val": 600}, {"name": "G", "val": 300}];
+
+        console.log(dataset);
+        //colorscale and radius scale 
+        const myColor = d3.scaleSequential()
+                          .domain(d3.extent(dataset, d => d.val))
+                          .interpolator(d3.interpolateBlues);
+
+        const radScale = d3.scaleLinear()
+                           .domain(d3.extent(dataset, d => d.val))
+                           .range([10, 40]);
+        
+        //svg 
+        const svg = d3.select("body").append("svg");
+        
+        //Create circles, append data and colors, and .sort() ascending/descending 
+        svg.selectAll("circle")
+           .data(dataset)
+           .enter()
+           .append("circle")
+           .attr("class", "circles")
+           .attr("r", d => radScale(d.val))
+           .attr("cx", (d,i) => i * (w/dataset.length) + 40)
+           .attr("cy", h/3)
+           .attr("fill", d=> myColor(d.val))
+           .attr("stroke",  "#08306B")
+           .attr("stroke-width", ".4px")
+           .on("click", (event,d) => {
+            svg.selectAll("circle")
+               .data(dataset.sort((a,b)=>d3.ascending(a.val, b.val)))
+               .transition()
+               .duration(2000)
+               .attr("r", d => radScale(d.val))
+               .attr("fill", d=> myColor(d.val));
+               console.log(dataset);
+          })
+          .on("dblclick", (event,d) => {
+            svg.selectAll("circle")
+               .data(dataset.sort((a,b)=>d3.descending(a.val, b.val)))
+               .transition()
+               .duration(2000)
+               .attr("r", d => radScale(d.val))
+               .attr("fill", d=> myColor(d.val));
+               console.log(dataset);
+          });  
+
+        </script>
+    </body>
+</html>

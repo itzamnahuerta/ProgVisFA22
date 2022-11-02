@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Circle Filter</title>
+        <script src= "https://d3js.org/d3.v7.min.js"></script>
+        <style type="text/css"> 
+            svg{
+                width:1000px;
+                height:500px;
+                margin-left: auto; 
+                margin-right: auto;
+                display: block;
+                }        
+      </style>
+    </head>
+    <body>
+        <svg></svg>
+        <script type="text/javascript">
+        
+        const w = 1000;
+        const h = 500;
+
+        const dataset = [10, 20, 30, 40, 50];
+
+        const svg = d3.select("svg");
+
+        const circles = svg.selectAll("circle")
+                           .data(dataset)
+                           .enter()
+                           .append("circle")
+                           .attr("r", d => d)
+                           .attr("cx", (d,i) => i * (w/dataset.length) + 20)
+                           .attr("cy", h/2)
+                           .style("fill", "midnightblue");
+
+    //   // using .filter() to filter circles based on paramaters
+    //    const  colorful = circles.filter(d => d>20)
+    //                             .style("fill", "gold");
+    //                             // .filter(d => d>40)
+    //                             // .style("fill", "pink");
+                                
+
+    //    //Versus: If/Else
+    //    const  colorful = circles.style("fill", function(d) { 
+    //                             if (d > 20 && d <= 40) { return "gold"} 
+    //                             else if (d < 50) {return "green"}
+    //                             else { return "pink" };
+    //                             })
+
+                                
+    //   //Versus: JS Conditional Operators 
+    //    const  colorful = circles.style("fill", d => d > 20 ? "gold" : "red");
+
+
+       //see how our arrays are being changed with .filter()
+       //look at this both with just gold and then with pink too and then if you don't use .filter()
+        console.log(circles);
+        console.log(colorful); 
+
+
+        </script>
+    </body>
+</html>
