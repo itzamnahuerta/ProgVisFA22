@@ -23,7 +23,7 @@
                 /* border: 1px solid blue; */
             }
             #container {
-                border: 2px solid sandybrown; 
+                /* border: 2px solid sandybrown;  */
                 display: flex;
                 flex-direction: column;
                 align-items: center;
@@ -123,12 +123,12 @@
         
         d3.select("input")
             .on("change", (event, d) => {
-
                 const num = event.currentTarget.value;
-                console.log("current value", event.currentTarget.value)
+
+                console.log("current value", num)
 
                 wildfires.attr("fill","#CBC7CF")
-                    .filter(d => d <= num)
+                    .filter(d => d.total_cpi_adjusted_cost_by_millions <= num)
                     .attr("fill","gold")
             })
 

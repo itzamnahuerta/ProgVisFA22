@@ -11,3 +11,5 @@ https://fonts.google.com/specimen/Trispace
 
 Color
 https://colorbrewer2.org/#type=sequential&scheme=Reds&n=3
+
+![alt text](./screenshot/Screen%20Shot%202022-11-15%20at%202.49.25%20PM.png)

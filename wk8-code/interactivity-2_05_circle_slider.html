@@ -79,9 +79,8 @@
         //on a change to the slider change the color of the circles by using .filter()
         d3.select("input")
           .on("change", (event, d) => {
-            
             const num = event.currentTarget.value;
-           
+            console.log("what is d", num)
             circles.attr("fill", "midnightblue")
                .filter(d => d <= num)
                .attr("fill", "gold");
