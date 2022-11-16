@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Stacked Bars</title>
+        <script src= "https://d3js.org/d3.v7.min.js"></script>
+        <style type="text/css">
+            
+            .labels{
+            font-size: 14px;
+            font-weight: normal;
+            font-family: sans-serif;
+          }
+
+        </style>
+    </head>
+    <body>
+        <svg width="600" height="600"></svg>
+        <script type="text/javascript">
+           
+            //Everything we are familiar with:
+            const dataset = [
+            {"month": "January", "rent": 1000, "utilities": 200, "food": 300, "other": 50},
+            {"month": "February", "rent": 1000, "utilities": 210, "food": 475, "other": 185},
+            {"month": "March", "rent": 1000, "utilities": 170, "food": 385, "other": 205},
+            {"month": "April", "rent": 1200, "utilities": 195, "food": 350, "other": 500},
+            {"month": "May", "rent": 1200, "utilities": 230, "food": 400, "other": 150},
+            {"month": "June", "rent": 1200, "utilities": 199, "food": 250, "other": 75},
+            {"month": "July", "rent": 1200, "utilities": 180, "food": 450, "other": 180},
+            {"month": "August", "rent": 1200, "utilities": 195, "food": 375, "other": 250},
+            {"month": "September", "rent": 1200, "utilities": 175, "food": 310, "other": 300},
+            {"month": "October", "rent": 1200, "utilities": 200, "food": 587, "other": 240},
+            {"month": "November", "rent": 1200, "utilities": 210, "food": 435, "other": 40},
+            {"month": "December", "rent": 1200, "utilities": 195, "food": 410, "other": 100}
+            ];
+            const svg = d3.select("svg");
+            const w = 600;
+            const h = 600;
+            const myColor = d3.scaleOrdinal(d3.schemeTableau10);
+
+            //stack layout params
+            const stack = d3.stack()
+                            .keys(["rent", "utilities", "food", "other"])
+                            // .keys(["food", "utilities", "rent", "other"])
+                            // .keys(["utilities", "food"])
+                            .order(d3.stackOrderDescending);
+                            //.order(d3.stackOrderAscending); 
+
+            //stacking the data
+            const series = stack(dataset);
+
+                console.log("series:",series); 
+
+            //setting up our barchart scales per usual
+            const xScale = d3.scaleBand()
+                             .domain(d3.range(dataset.length))
+                             .range([0, w])
+                             .paddingInner(0.05);
+
+            const yScale = d3.scaleLinear()
+                             .domain([0, d3.max(dataset, d => d.rent + d.utilities + d.food + d.other)])
+                             .range([h, 0]);
+            
+            //making our data groups!
+            const groups = svg.selectAll("g")
+                              .data(series)
+                              .enter()
+                              .append("g")
+                              .style("fill", (d,i)=> myColor(i));
+
+            //making our rects!
+            const bars = groups.selectAll("rect")
+                               .data(d=>d)
+                               .enter()
+                               .append("rect")
+                               .attr("x", (d,i) => xScale(i))
+                            //    .attr('x', (d,i) => console.log(i))
+                               .attr("y", d => yScale(d[1])) 
+                               .attr("height", d=> yScale(d[0])-yScale(d[1]))
+                               .attr("width", xScale.bandwidth());
+                              
+                               
+            //other things you might think about if of interest to you: 100% stacked bars, radial stacked bars
+
+
+        </script>
+    </body>
+</html>

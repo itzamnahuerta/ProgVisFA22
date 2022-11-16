@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Scatter Symbols</title>
+        <script src= "https://d3js.org/d3.v7.min.js"></script>
+        <style type="text/css">
+            .axis path, 
+            .axis line{
+                stroke: midnightblue;
+            }
+
+            .axis text{
+                font-family: sans-serif;
+                font-size: 10px;
+                color: midnightblue;
+                }
+
+            .stars {
+                fill: gold;
+                stroke: midnightblue;
+            }
+
+        </style>
+    </head>
+    <body>
+        <svg width="600" height="600"></svg>
+        <script type="text/javascript">
+
+            const w = 500;
+            const h = 500;
+            const padding = 50;
+            const svg = d3.select("svg");
+            
+            const dataset = [ 
+            [200, 40], [170, 100], 
+            [400, 60], [100, 150], 
+            [410, 300], [120, 220], 
+            [310, 260], [400, 110], 
+            [500,90], [270, 600], 
+            [530, 380], [475, 475] 
+            ];
+
+            //scales for x and y - per usual with d3.max()
+            const xScale = d3.scaleLinear()
+                             .domain([0, d3.max(dataset, d => d[0])]) 
+                             .range([padding, w-padding]); 
+
+            const yScale = d3.scaleLinear()
+                             .domain([0, d3.max(dataset, d => d[1])]) 
+                             .range([h-padding, padding]); 
+
+            //axes - per usual
+            const bottomAxis = d3.axisBottom()
+                                .scale(xScale)
+                                .ticks(10);
+
+            const leftAxis = d3.axisLeft()
+                             .scale(yScale)
+                             .ticks(10);                
+
+            //symbol generator 
+            //Other common shapes: d3.symbolDiamond, d3.symbolTriangle, d3.symbolWye, d3.symbolCross, and d3.symbolSquare
+            const symbolData = d3.symbol()
+                             .type(d3.symbolStar);
+                             //.type(d3.symbolDiamond);
+                             //.size(150); //64 is the default            
+            //stars
+            const stars = svg.selectAll(".stars")
+                              .data(dataset)
+                              .enter()
+                              .append("path")
+                              .attr("class", "stars")
+                              .attr("d", symbolData)
+                              .attr("transform", d => 'translate(' + xScale(d[0]) + "," + yScale(d[1]) + ')');
+                              
+
+            //implement bottom (x) and left (y) axis - per usual
+            svg.append("g")
+                .attr("class", "axis") 
+                .attr("transform", "translate(0," + (h-padding) + ")") 
+                .call(bottomAxis);
+
+            svg.append("g")
+               .attr("class", "axis") 
+               .attr("transform", "translate(" + padding + ",0)") 
+               .call(leftAxis);
+
+
+        </script>
+    </body>
+</html>

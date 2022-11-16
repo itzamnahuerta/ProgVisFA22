@@ -1,0 +1,136 @@
+,country_name,ccode,facility_name,facility_ambiguity,enr_type,size,construction_start,construction_end,operation_start,operation_end,operation2_start,operation2_end,covert,iaea,regional,military,military_ambiguity,multinational,foreign_assistance,foreign_assistance_ambiguity,total_years_spent
+0,Algeria,615,Hot cell facility at Ain Oussera,0,1,1,1986,1992,1992,7777,,,1,1,0,0,1,0,1,0,6
+2,Argentina,160,Ezeiza II – SF Reprocessing Facility,-77,1,2,1978,1990,9999,9999,,,0,0,1,0,0,0,0,1,12
+3,Argentina,160,Pilcaniyeu Enrichment Facility I,0,2,2,1979,1987,1987,1994,,,1,0,1,1,0,0,0,1,8
+5,Australia,900,Lucas Heights,0,3,1,1965,1972,1972,1983,,,0,1,0,0,1,0,0,0,7
+6,Australia,900,Silex Laser Enrichment Facility at Lucas Heights Science and Technology Complex,0,7,1,1982,1992,1992,2007,,,0,1,0,0,0,1,1,1,10
+7,Belgium,211,"Mol, Purex Reprocessing Facility, Eurochemic",0,1,2,1960,1966,1966,1974,,,0,1,1,0,0,1,1,0,6
+8,Brazil,140,Aerospace Technical Center (Institute of Advanced Studies),0,7,1,1975,1981,1981,1989,,,1,0,0,1,0,0,0,0,6
+9,Brazil,140,"BRF Enrichment – Aramar Demonstration Center, Ipero, Sao Paolo",0,3,2,1987,1998,1998,7777,,,1,1,1,1,0,0,0,1,11
+10,Brazil,140,"BRN Enrichment (Aramar Isotopic Enrichment Lab) Ipero, Sao Paulo",0,3,1,1976,1988,1988,7777,,,1,1,1,1,0,0,1,0,12
+11,Brazil,140,"INB Resende – Commercial Enrichment Facility, Rio De Janeiro",0,3,3,2000,2005,2005,7777,,,0,1,1,1,1,0,0,1,5
+12,Brazil,140,"INB Resende –Pilot Enrichment Facility, Rio De Janeiro",0,6,2,1982,1985,1985,1994,,,0,1,1,0,0,0,1,0,3
+13,Brazil,140,IPEN – Reprocessing,0,1,1,1960,1982,1982,1989,,,1,0,0,1,0,0,0,1,22
+14,Brazil,140,Pilot Enrichment Plant- Belo Horizonte (INB Resende),0,6,2,1975,1979,1979,1989,,,0,1,0,0,0,0,1,0,4
+17,Canada,20,Montreal Lab  ,1,1,1,1942,1944,1944,1946,,,1,0,0,1,0,1,1,0,2
+18,China,710,China Institute of Atomic Energy (Diffusion Lab),1,2,1,1955,1958,1958,1963,,,1,0,0,1,0,0,1,1,3
+21,China,710,"Hanzhong, Shaanxi Uranium Enrichment Plant, Hanzhong I",0,3,3,1993,1997,1997,7777,,,0,1,0,0,0,0,1,0,4
+23,China,710,"Hanzhong, Shaanxi Uranium Enrichment Plant, Hanzhong III",0,3,3,2009,2011,2011,7777,,,0,1,0,0,0,0,1,0,2
+28,China,710,Juiquan 2 (Atomic Energy Complex),0,1,2,1965,1968,1968,1970,,,1,0,0,1,0,0,1,0,3
+29,China,710,"Nuclear Fuel Component Plant (Pant 812, Yibin  Sichuan)",0,1,3,1968,1972,1972,7777,,,1,0,0,1,0,0,1,0,4
+30,China,710,"Lanzhou (RPP), Gansu",0,1,2,1997,2006,2006,7777,,,0,0,0,0,0,0,0,0,9
+31,China,710,"Lanzhou 1 (China Institute of Atomic Energy Tuoli, Plant 504)",0,2,3,1958,1963,1963,2000,,,1,0,0,1,0,0,1,0,5
+32,China,710,"Lanzhou 2, Gansu",0,3,3,1997,2001,2001,7777,,,0,1,0,0,0,0,1,0,4
+33,China,710,Lanzhou 3 (Indigenous Centrifuge Plant I),0,3,2,2007,2010,2010,7777,,,0,0,0,0,0,0,0,0,3
+35,China,710,"Plant 821 (Plutonium Production Complex in Guangyuan, Sichuan)",0,1,3,1969,1976,1976,1989,,,1,0,0,1,0,0,0,0,7
+37,Egypt,651,Hot Cell Facility at Inshas Nuclear Research Center,1,1,1,1980,1982,1982,7777,,,1,1,0,1,1,0,1,0,2
+39,France,220,Areva NC La Hague – UP2 – 400 (renamed HAO facility in 1976),0,1,3,1961,1967,1967,2004,,,0,1,1,1,0,0,0,0,6
+40,France,220,Areva NC La Hague – UP2 – 800 ,0,1,3,1982,1994,1994,7777,,,0,1,1,0,0,0,0,0,12
+41,France,220,Areva NC La Hague – UP3,0,1,3,1982,1990,1990,7777,,,0,1,1,0,0,0,0,0,8
+45,France,220,La Hague (Marcoule-UP1),0,1,3,1952,1958,1958,1997,,,0,0,0,1,0,0,0,0,6
+48,France,220,FONTENAY: BÂTIMENT RADIOCHIMIE (Building 18),1,1,1,1959,1961,1961,1995,,,0,0,0,1,1,0,0,0,2
+50,France,220,Fontenay Pilot Reprocessing Plant,0,1,2,1952,1954,1954,1957,,,0,0,0,1,1,0,0,0,2
+51,France,220,Experimental Reprocessing Facility (Building 211),0,1,2,1960,1968,1968,1997,,,0,0,0,1,1,0,0,0,8
+52,France,220,Eurodif (Georges Besse I),0,2,3,1974,1979,1979,2012,,,0,1,1,0,0,1,1,1,5
+53,France,220,Georges Besse II—North Plant,0,3,3,2006,2009,2009,7777,,,0,1,1,0,0,1,1,0,3
+55,France,220,PL81 Grenoble,0,5,2,1968,1974,1974,1984,,,1,0,0,1,1,0,0,0,6
+59,France,220,Pierrelate GDP,0,2,3,1960,1964,1964,1996,,,0,0,0,1,0,0,0,0,4
+61,France,220,PP35 Pierrelatte,0,5,2,1968,1974,1974,1985,,,1,0,0,1,1,0,0,0,6
+62,Germany,260,Enrichment Technology Company Ltd. Zweigniederlassung Deutschland,1,3,1,1960,1964,1964,7777,,,0,1,1,0,0,1,1,1,4
+64,Germany,260,"Karlsruhe Nuclear Research Center, Institute for Nuclear Process Engineering",0,6,2,1960,1967,1967,1989,,,0,1,1,0,0,0,0,0,7
+65,Germany,260,Karlsruhe Reprocessing Plant (WAK),0,1,2,1967,1971,1971,1991,,,0,1,1,0,0,0,0,0,4
+66,Germany,260,MILLI Reprocessing Test Facility,0,1,2,1965,1971,1971,1991,,,0,1,1,0,0,0,0,0,6
+67,Germany,260,Plutonium Test Extraction Facility (Reprocessing Plant Karlsruhe),0,1,2,1977,1982,1982,1991,,,0,1,1,0,0,0,0,0,5
+68,Germany,260,"Urenco Germany GmbH, Gronau",0,3,3,1982,1985,1985,7777,,,0,1,1,0,0,1,1,0,3
+70,India,750,"BARC, Trombay (Pilot)",0,3,2,1980,1985,1985,7777,,,1,0,0,0,0,0,0,0,5
+71,India,750,"BARC, Laser Enrichment Plant",1,7,1,1982,1993,1993,7777,,,0,0,0,0,0,0,0,0,11
+73,India,750,"Center for Advanced Technology, Laser Enrichment Plant",1,7,1,1984,1986,1986,7777,,,0,0,0,0,0,0,0,0,2
+74,India,750,Fast Reactor Fuel Reprocessing Plant (FRFRP),0,1,2,2000,2011,2011,7777,,,0,0,0,0,1,0,0,0,11
+77,India,750,Lead Minicell Facility at Kalpakkam (Coral—Compact Reprocessing facility for Advanced fuels in Lead cells),0,1,2,2001,2003,2003,7777,,,0,0,0,0,0,0,0,0,2
+78,India,750,"Power Reactor Fuel Reprocessing (PREFRE), Bhabha Atomic Research Centre",0,1,3,1969,1977,1977,7777,,,0,0,0,0,1,0,0,0,8
+79,India,750,"Rattehalli Materials Plant, Mysore",0,3,2,1986,1991,1991,7777,,,1,0,0,1,0,0,0,0,5
+81,Iran,630,Natanz Fuel Enrichment Plant (FEP),0,3,3,2001,2006,2006,7777,,,1,1,0,1,1,0,1,0,5
+82,Iran,630,Fordow Uranium Enrichment Facility (Qom-FEEP),0,3,2,2006,2011,2011,7777,,,1,1,0,1,0,0,0,0,5
+84,Iran,630,Kalaye Electric Company,0,3,1,1995,1998,1998,2003,,,1,1,0,1,1,0,1,0,3
+85,Iran,630,Lashkar Ab’ad,0,7,2,2000,2002,2002,2003,,,1,1,0,1,1,0,1,0,2
+86,Iran,630,"Molybdunum, Iodine and Xenon Radioisotope Production (MIX) Facility",-77,1,1,1987,2005,9999,9999,,,1,1,0,1,1,0,0,0,18
+87,Iran,630,Tehran Nuclear Research Center (Reprocessing),0,1,1,1967,1974,1974,1993,,,0,1,0,1,1,0,1,0,7
+88,Iran,630,Tehran Nuclear Research Center (Enrichment),1,7,1,1991,1993,1993,2000,,,0,1,0,1,1,0,1,0,2
+92,Iraq,645,Al Tuwaitha Hot Cell,0,1,1,1982,1990,1990,1991,,,1,0,0,1,0,0,0,0,8
+94,Iraq,645,Al Tarmiya (north of Baghdad),0,4,2,1982,1990,1990,1991,,,1,0,0,1,0,0,1,0,8
+97,Iraq,645,Laboratory Reprocessing Facility (Radiochemistry Laboratory),0,1,1,1979,1982,1982,1991,,,1,0,0,1,0,0,1,0,3
+99,Israel,666,"Negev Nuclear Research Center, Dimona Machon 8",0,3,3,1958,1979,1979,7777,,,1,0,0,1,0,0,0,0,21
+100,Israel,666,"Negev Nuclear Research Center, Dimona Machon 9",0,7,1,1972,1974,1974,7777,,,1,0,0,1,0,0,0,0,2
+101,Israel,666,"Negev Nuclear Research Center, Dimona Machon 2",0,1,3,1957,1963,1963,7777,,,1,0,0,1,0,0,1,0,6
+103,Italy,325,Eurex SFRE (MTR) at Saluggia in Vercelli,0,1,2,1964,1968,1970,1983,,,0,1,0,0,0,0,0,0,4
+104,Italy,325,Eurex SFRE (Oxide) at Saluggia in Vercelli,0,1,2,1976,1980,1980,1990,,,0,1,1,0,0,0,0,0,4
+105,Italy,325,Eurex SFRE (PU Nitrate Line) Saluggia in Vercelli,0,1,2,1981,1988,1988,1990,,,0,1,1,0,0,0,0,0,7
+106,Italy,325,ITREC at Trisaia,0,1,2,1962,1966,1966,1980,,,0,1,1,0,0,0,1,0,4
+107,Japan,740,Asahi Uranium Enrichment Laboratory,0,5,2,1982,1986,1986,1991,,,0,1,0,0,0,0,0,0,4
+108,Japan,740,JAEA Ningyo – Toge Enrichment Demo. Plant (DOP),0,3,2,1985,1988,1988,2001,,,0,1,0,0,0,0,0,0,3
+109,Japan,740,"JAEA Tokai (Enrichment Tests in Naka-gun, Ibaraki prefecture)",0,7,1,1987,1991,1991,2003,,,0,1,0,0,0,0,0,0,4
+110,Japan,740,JAEA Tokai Reprocessing Plant (Japan Nuclear Cycle Institute),0,1,2,1971,1975,1975,2006,,,0,1,0,0,0,0,1,0,4
+113,Japan,740,Rokkasho Reprocessing Plant I,0,1,3,1993,2004,2005,7777,,,0,1,0,0,0,0,1,0,11
+114,Japan,740,Rokkasho Uranium Enrichment Plant,0,3,3,1988,1992,1992,2009,2011.0,7777.0,0,1,0,0,0,0,0,0,4
+119,Netherlands,210,Almelo SP1 (Dutch),0,3,2,1971,1973,1973,1981,,,0,1,1,0,0,1,1,0,2
+120,Netherlands,210,Almelo SP2 (German Plant adjacent to the Dutch one in Almelo),0,3,2,1971,1973,1973,1981,,,0,1,1,0,0,1,1,0,2
+121,Netherlands,210,Almelo SP3 Demonstration,0,3,2,1974,1980,1980,2005,,,0,1,1,0,0,1,1,0,6
+122,Netherlands,210,Almelo SP4,0,3,3,1979,1981,1981,7777,,,0,1,1,0,0,1,1,0,2
+129,Pakistan,770,Chaklala,0,3,2,1974,1976,1980,7777,,,1,0,0,1,0,0,0,0,2
+133,Pakistan,770,Kahuta- KRL (A.Q. Khan Research Laboratories),0,3,3,1974,1984,1984,7777,,,1,0,0,1,0,0,1,1,10
+134,Pakistan,770,Experimental Reprocessing Plant at Pakistan Institute of Nuclear Science and Technology (PINSTECH),0,1,2,1971,1973,1973,7777,,,1,0,0,1,0,0,1,0,2
+135,Pakistan,770,New Labs at PINSTECH  ,0,1,2,1980,1982,1987,7777,,,1,0,0,1,0,0,1,1,2
+136,Pakistan,770,Sihala,0,3,2,1976,1979,1979,7777,,,1,0,0,1,0,0,0,1,3
+137,Romania,360,Pitesti Nuclear Research Institute,0,1,1,1981,1985,1985,1989,,,1,0,0,1,1,0,0,0,4
+138,Russia,365,"Angarsk ElectroChemical Combine, Diffusion",0,2,3,1949,1957,1957,1992,,,1,0,0,1,0,0,0,0,8
+142,Russia,365,Institute G (near Sukhumi),1,2,1,1945,1947,1947,1949,,,1,0,0,1,0,0,0,0,2
+143,Russia,365,Krasnoyarsk-45 Electronchemical Plant - Diffusion (Zelenogorsk in Laughter),0,2,3,1949,1964,1964,1990,,,1,0,0,1,0,0,0,0,15
+145,Russia,365,Krasnoyarsk-26,0,1,3,1950,1964,1964,2012,,,1,0,0,1,0,0,0,0,14
+150,Russia,365,"B Plant, Mayak (Chelyabinsk-65)",0,1,2,1946,1948,1948,1971,,,1,0,0,1,0,0,0,0,2
+151,Russia,365,"Pilot Centrifuge Plant, Urals Electro-Chemical Combine, Novouralsk",0,3,2,1955,1957,1957,1962,,,1,0,0,1,0,0,0,0,2
+152,Russia,365,"Commercial Centrifuge Plant 1, Urals Electro-Chemical Combine, Novouralsk",0,3,3,1960,1962,1962,7777,,,1,0,0,1,0,0,0,0,2
+157,Russia,365,RIAR (Research Institute of Atomic Reactors),0,1,2,1956,1965,1965,7777,,,1,0,0,1,0,0,0,0,9
+160,Russia,365,"D1, Urals Electro-Chemical Combine, Novouralsk",0,2,2,1946,1948,1948,1955,,,1,0,0,1,0,0,0,0,2
+162,Russia,365,"D4, Urals Electro-Chemical Combine, Novouralsk",0,2,3,1950,1953,1953,1987,,,1,0,0,1,0,0,0,0,3
+163,Russia,365,"D5, Urals Electro-Chemical Combine, Novouralsk",0,2,3,1950,1953,1953,1987,,,1,0,0,1,0,0,0,0,3
+166,Russia,365,Siberian Chemical Combine (Seversk) II,0,1,3,1949,1954,1954,7777,,,1,0,0,1,0,0,0,0,5
+168,Russia,365,"SU-20, Plant 418",0,4,2,1946,1948,1948,1950,,,1,0,0,1,0,0,0,0,2
+170,South Africa,560,Valindaba (Laser),0,7,2,1983,1995,1995,1998,,,1,1,0,1,1,0,0,0,12
+171,South Africa,560,Valindaba Y – Plant,0,6,2,1971,1975,1975,1979,1981.0,1990.0,0,0,0,1,0,0,0,0,4
+173,South Africa,560,Laboratory Enrichment Facility at Pelindaba,0,6,1,1960,1967,1967,1988,,,1,0,0,1,0,0,0,0,7
+174,South Africa,560,"Hot Cell Complex, Pelindaba Nuclear Research Center",0,1,3,1984,1987,1987,7777,,,0,1,0,0,0,0,0,0,3
+180,Sweden,380,Stockholm Extraction Laboratory,0,1,1,1946,1954,1954,1960,,,1,0,0,1,0,0,0,0,8
+182,Taiwan,713,Institute for Nuclear Energy Reaction (INER) Reprocessing Facility I,0,1,1,1970,1976,1976,1977,,,1,1,0,1,0,0,1,1,6
+185,United Kingdom,200,Capenhurst A-3  ,0,3,3,1982,1987,1987,7777,,,0,1,1,1,0,1,1,0,5
+186,United Kingdom,200,Capenhurst (GD) (E-22),0,2,3,1950,1952,1952,1980,,,1,1,1,1,0,0,0,0,2
+188,United Kingdom,200,Capenhurst (E-21),0,3,2,1976,1980,1980,1991,,,0,1,0,0,0,1,1,0,4
+195,United Kingdom,200,NDA B203 Pu Residues Recovery Plant at Sellafield,0,1,3,1951,1954,1954,1987,,,0,1,1,0,0,0,0,0,3
+196,United Kingdom,200,B204 Reprocessing Plant at Sellafield,0,1,3,1947,1952,1952,1964,1969.0,1972.0,1,0,0,1,0,0,0,0,5
+198,United Kingdom,200,NDA Reprocessing Plant MTR,0,1,3,1952,1958,1958,1998,,,0,0,0,1,0,0,0,0,6
+199,United Kingdom,200,NDA Thorp,0,1,3,1985,1994,1994,7777,,,0,1,1,0,0,0,0,0,9
+205,United States,2,"American Centrifuge Demonstration Facility (Piketon, OH)",0,3,2,2002,2007,2007,7777,,,0,0,0,0,0,0,0,0,5
+207,United States,2,Argonne National Laboratory West,0,1,2,1950,1953,1953,1992,,,1,0,0,1,0,0,0,0,3
+209,United States,2,Barnwell Reprocessing Facility,0,1,3,1970,1977,9999,9999,,,0,0,0,0,0,0,0,0,7
+211,United States,2,GE Morris,0,1,3,1967,1971,1971,1971,,,0,0,0,0,0,0,0,0,4
+212,United States,2,Hanford B Plant I,0,1,1,1943,1945,1945,1952,,,1,0,0,1,0,0,0,0,2
+213,United States,2,Hanford Redox Facility (Plutonium Finishing Plant - Plant Z),0,1,2,1949,1952,1952,1967,,,1,0,0,1,0,0,0,0,3
+215,United States,2,Hanford T Plant Complex (T-Plant),0,1,3,1943,1945,1945,1956,,,1,0,0,1,0,0,0,0,2
+216,United States,2,Hanford-B Plant II (PUREX Plant),0,1,1,1953,1956,1956,1972,1983.0,1988.0,1,0,0,1,0,0,0,0,3
+218,United States,2,Idaho Spent Fuel Reprocessing Facility,0,1,3,1950,1959,1959,1992,,,1,1,0,1,0,0,0,0,9
+220,United States,2,Lawrence Livermore ALVIS Laboratory,1,7,1,1984,1991,1991,1999,,,0,0,0,0,1,0,0,0,7
+222,United States,2,Los Alamos Plutonium Facility (TA-55),0,1,3,1973,1978,1978,7777,,,0,0,0,1,0,0,0,0,5
+224,United States,2,Oak Ridge K-25 Plant,0,2,3,1943,1945,1945,1985,,,1,0,0,1,0,0,0,0,2
+229,United States,2,Oak Ridge Thorex Reprocessing,0,1,2,1950,1954,1954,1958,,,1,0,0,1,0,0,0,0,4
+232,United States,2,Paducah Gaseous Diffusion,0,2,3,1950,1952,1952,7777,,,0,1,0,1,0,0,0,0,2
+234,United States,2,"Portsmouth Gas Centrifuge Facility, Piketon Ohio",-77,3,3,1982,1985,9999,9999,,,0,1,0,0,0,0,0,0,3
+235,United States,2,Portsmouth Diffusion Plant (A-Plant),0,2,3,1952,1956,1956,2001,,,1,1,0,1,0,0,0,0,4
+236,United States,2,Savannah River F Canyon,0,1,3,1950,1954,1954,1992,1996.0,2004.0,1,0,0,1,0,0,0,0,4
+237,United States,2,Savannah River H Canyon,0,1,3,1950,1955,1955,1992,1995.0,7777.0,1,0,0,1,0,0,0,0,5
+241,United States,2,"SILEX Plant, Wilmington",0,7,3,2007,2009,2009,7777,,,0,0,0,0,0,1,1,0,2
+243,United States,2,"Special Metallurgical Facility, Miamisburg",0,1,3,1956,1960,1960,1968,,,1,0,0,1,0,0,0,0,4
+245,United States,2,"Urenco USA Eunice, New Mexico (National Enrichment Facility (ENF)",0,3,3,2006,2010,2010,7777,,,0,1,0,0,0,1,1,0,4
+246,United States,2,"University of Virginia, Centrifuge Testing Facility",1,3,1,1939,1941,1941,1944,,,1,0,0,1,0,0,0,0,2
+249,Yugoslavia,345,Vinca Reprocessing Center near Belgrade (Boris Kidric Institute of Nuclear Sciences),0,1,1,1956,1966,1966,1978,,,0,0,0,1,0,0,1,0,10
+250,Yugoslavia,345,Vinca Electromagnetic Isotope Separator (Vinca Laboratory of Physical Chemistry),1,4,1,1956,1965,1965,1970,,,0,0,0,1,0,0,0,0,9
+251,Yugoslavia,345,Rudjer Boskovic Institute  ,1,4,1,1952,1954,1954,1977,,,0,0,0,1,0,0,0,0,2
+252,Yugoslavia,345,Jozef Stefan Institute near Ljubljana,0,1,1,1949,1954,1954,1962,1974.0,1977.0,0,0,0,1,0,0,1,0,5

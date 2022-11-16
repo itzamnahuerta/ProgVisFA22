@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Pie and Doughnut</title>
+        <script src= "https://d3js.org/d3.v7.min.js"></script>
+        <style type="text/css">
+            
+            .labels{
+            font-size: 14px;
+            font-weight: normal;
+            font-family: sans-serif;
+          }
+
+        </style>
+    </head>
+    <body>
+        <svg width="600" height="600"></svg>
+        <script type="text/javascript">
+           
+            //Everything we are familiar with:
+            const dataset = [10, 20, 30, 5, 50, 80];
+            const svg = d3.select("svg");
+            const w = 600;
+            const myColor = d3.scaleOrdinal(d3.schemeSpectral[6]);
+
+            //Radius information
+            const outerRadius = w/2;
+            const innerRadius = 0; 
+        //     const outerRadius = 200;
+        //    const innerRadius = 150; //to make a doughnut!
+           
+            //d3.arc()creates our wedges 
+            const arcs = d3.arc()  
+                           .innerRadius(innerRadius)//required 
+                           .outerRadius(outerRadius) //required
+                           //.cornerRadius(10);
+                           //.cornerRadius(100);
+
+            //pie generator
+            const pie = d3.pie()
+                            //.padAngle(.04);
+                            // .startAngle(-0.5 * Math.PI)
+                            // .endAngle(0.5 * Math.PI);
+                            //  .startAngle(0 * Math.PI)
+                            //  .endAngle(1 * Math.PI);
+                            // .startAngle(0 * Math.PI)
+                            // .endAngle(0.5 * Math.PI);
+                            // .startAngle(0.5 * Math.PI)
+                            // .endAngle(2 * Math.PI);
+                            // .startAngle(-0.5 * Math.PI)
+                            // .endAngle(0 * Math.PI);
+
+            //Groups to build our pie chart!
+            const groups = svg.selectAll("g.arc")
+                              .data(pie(dataset))//give data to our pie generator
+                              .enter()
+                              .append("g")
+                              .attr("class", "arc")
+                              .attr("transform", "translate(" + outerRadius + "," + outerRadius + ")");//arcs transform translate 
+                            console.log(pie(dataset));
+            groups.append("path")
+                 .attr("fill", (d,i)=> myColor(i))
+                 .attr("d", arcs); //d of our path 
+
+
+            //Labels
+            groups.append("text")
+                  .attr("transform", d=> "translate(" + arcs.centroid(d) + ")")
+                  .attr("text-anchor", "middle")
+                  .attr("class", "labels")
+                  .text(d=>d.value);
+
+          //if you happen to like round / doughnut charts another option is to think into how you might make a radial bar chart, another common round chart. 
+
+
+        </script>
+    </body>
+</html>

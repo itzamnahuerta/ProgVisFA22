@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src= "https://d3js.org/d3.v7.min.js"></script>
+    </head>
+    <body>
+        <svg width="2400" height="800"></svg>
+        
+        <script type="text/javascript">
+            d3.csv('./data/rebel_leaders.csv').then(dataset => {
+                console.log("dataset", dataset)
+                dataset.forEach(d => {
+                    d.gdp = d.gdp;
+                    d.gdp_year_one = d.gdp_year_one;
+                    d.size_peak = d.size_peak;
+                    d.size_year_one = d.size_year_one;
+                })
+            const svg = d3.select('svg');
+            const w = 2200;
+            const h = 600; 
+            const myColor = d3.scaleOrdinal(d3.schemeTableau10);
+
+            // stack method returns a stack genertor 
+            // need to specify which properties (series) in the dataset to use, this is done by using .keys
+            // each string is the name of a property we want to create a layer for 
+            // .keys = takes an array of strings as an argument and returns the stack generator 
+            const stack = d3.stack()
+                            .keys(['gdp', 'gdp_year_one','size_year_one','size_peak' ]);
+            
+            
+            // now that we invoked the stack generator, we are passing it the dataset
+            // stack takes an array of of data and returns back an array series
+            const series = stack(dataset);
+             console.log("series:",series);
+            
+            // to render this data into stacked areas we need an area generator and some scales 
+            const xScale = d3.scaleBand()
+                            .domain(d3.range(dataset.length))
+                            .range([0,w])
+                            .paddingInner(0.05);
+                            
+            const yScale = d3.scaleLinear()
+                            .domain([0, d3.max(dataset, d => d.gdp_year_one + d.gdp)])
+                            .range([h, 0]);
+            
+
+            // making our data groups
+            const groups = svg.selectAll('g')
+                            .data(series)
+                            .enter()
+                            .append('g')
+                            .style('fill', (d,i) => myColor(i));
+
+            // make our rects
+            const bars = groups.selectAll('rect')
+                            .data(d => d)
+                            .enter()
+                            .append('rect')
+                            .attr("x", (d,i) => xScale(i))
+                            // .attr('x', (d,i) => console.log(i))
+                            .attr('y', d => console.log(d[1]))
+                            .attr("y", d => yScale(d[1])) 
+                            .attr("height", d=> yScale(d[0])-yScale(d[1]))
+                            .attr("width", xScale.bandwidth());
+                            
+
+
+
+            })
+        </script>
+    </body>
+</html>
