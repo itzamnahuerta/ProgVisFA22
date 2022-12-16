@@ -7,7 +7,7 @@ section{
     height: 100%;
     display:grid;
     grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(5, 1fr);
+    grid-template-rows: repeat(9, 1fr);
 
     // ATTRIBUTES NAMES
     #c1-r1{
@@ -34,15 +34,56 @@ section{
         // region: latin america
         grid-column: 1/2;
         grid-row: 2/3;
-        // font-size: 3em;
         margin-top: 5em;
         justify-self: top;
     }
     #c1-r3 {
-        // region: latin america
+        // region: africa
         grid-column: 1/2;
         grid-row: 3/4;
-        // font-size: 3em;
+        margin-top: 5em;
+        justify-self: top;
+    }
+    #c1-r4 {
+        // region: mid eastern africa
+        grid-column: 1/2;
+        grid-row: 4/5;
+        margin-top: 5em;
+        justify-self: top;
+    }
+    #c1-r5 {
+        // region: west
+        grid-column: 1/2;
+        grid-row: 5/6;
+        margin-top: 5em;
+        justify-self: top;
+    }
+    #c1-r6 {
+        // region: central eurasia
+        grid-column: 1/2;
+        grid-row: 6/7;
+        margin-top: 5em;
+        justify-self: top;
+    }
+    #c1-r7 {
+        // region: south asia
+        grid-column: 1/2;
+        grid-row: 7/7;
+        margin-top: 5em;
+        justify-self: top;
+    }
+    #c1-r8 {
+        // region: south east asia
+        grid-column: 1/2;
+        grid-row: 8/9;
+        margin-top: 5em;
+        justify-self: top;
+    }
+    #c1-r9 {
+        // region: south east asia
+        grid-column: 1/2;
+        grid-row: 9/9;
+
         margin-top: 5em;
         justify-self: top;
     }
@@ -55,7 +96,7 @@ section{
         grid-column: 2/3;
         grid-row: 2/3;
         justify-self: center;
-        border:3px solid blue;
+        border:3px solid red;
     }
     #c2-r3{
         // latin america - fought in civil war
