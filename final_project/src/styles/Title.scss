@@ -1,0 +1,75 @@
+@import '../styles/styles.scss';
+
+
+.container{
+    // border: 2px solid red;
+    display: flex;
+    flex-direction: row;
+    margin: 2em 0 0 3em ;
+    .text-effect {
+        // border: 2px solid red;
+        border-radius: 12px;
+        height: 90%;
+        margin: 0 auto;
+        flex-basis: 100%;
+      }
+      .text-effect span {
+        font-family:$heading-font;;
+        color: transparent;
+        font-size: 6em;
+        text-shadow: 0 0 2px rgba(204, 208, 212, 0.9), 0 15px 25px rgba(0, 0, 0, 0.3),
+          0 -2px 3px rgba(0, 0, 0, 0.1), 0 -5px 10px rgba(255, 255, 255, 0.5),
+          0 5px 10px rgba(0, 0, 0, 0.3), 0 3px 4px rgba(255, 255, 255, 0.2),
+          0 0 20px rgba(255, 255, 255, 0.45);
+        display: inline-block;
+        animation: animate 0.85s ease-in-out infinite alternate;
+      }
+      $letters: 36; //Define number of letters in animation - including spaces
+      $timing: 0.15s;//Delay between letters
+    //Sets timing differntly for each letter
+    @while $letters > 0 {
+    .text-effect span:nth-child(#{$letters}) {
+        animation-delay: $timing * $letters;
+        }
+        $letters: $letters - 1;
+    }
+  
+  @keyframes animate {
+    to {
+      text-shadow: 0 0 2px rgba(204, 208, 212, 0.2), 0 0 3px rgba(0, 0, 0, 0.02),
+        0 0 0 rgba(0, 0, 0, 0), 0 0 0 rgba(255, 255, 255, 0),
+        0 0 0 rgba(0, 0, 0, 0), 0 0 0 rgba(255, 255, 255, 0),
+        0 0 0 rgba(255, 255, 255, 0);
+    }
+    }
+}
+
+// media queries for different screen sizes
+@media only screen and (max-width: 990px) {
+    .text-effect span {
+      font-size: 60px;
+    }
+  }
+@media only screen and (max-width: 767px) {
+.text-effect span {
+    font-size: 50px;
+    }
+}
+@media only screen and (max-width: 479px) {
+.text-effect span {
+    font-size: 55px;
+    }
+}
+@media only screen and (max-width: 359px) {
+.text-effect span {
+    font-size: 40px;
+    }
+}
+  
+
+h1 {
+    font-family:$heading-font;
+    font-size: 5em;
+    color: darkgray;
+}
+

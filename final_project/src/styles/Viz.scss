@@ -1,0 +1,47 @@
+section{
+    height: 900vh;
+}
+
+.grid-viz{
+    border: 3px solid red;
+    height: 100%;
+    display:grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+
+    // TITLES 
+    #c1-r1{
+        grid-column: 2/3;
+        grid-row: 1/2;
+        // font-size: 3em;
+        margin-top: 5em;
+        justify-self: center;
+    }
+    #c2-r1 {
+        grid-column: 3/4;
+        grid-row: 1/2;
+        // font-size: 3em;
+        margin-top: 5em;
+        justify-self: center;
+    }
+
+    #c1-r2 {
+        grid-column: 1/2;
+        grid-row: 2/3;
+        // font-size: 3em;
+        margin-top: 5em;
+        justify-self: top;
+    }
+
+    // SVG rebel groups
+    #c2-r2{
+        grid-column: 2/3;
+        grid-row: 2/3;
+        font-size: 3em;
+        justify-self: center;
+    }
+    path{
+        transform: scale(.5);
+    }
+}
+
