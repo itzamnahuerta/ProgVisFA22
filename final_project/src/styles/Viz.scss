@@ -5,9 +5,10 @@ section{
 }
 
 .grid-viz{
+    transform: rotate(-5deg);
     margin-top: 4em;
     font-family:  HK-Grotesk-Light;
-    // border: 2px solid salmon;
+    border: 2px solid salmon;
     height: 100%;
     display:grid;
     grid-template-columns: 90px 250px 200px 1fr 1fr;
@@ -100,7 +101,16 @@ section{
     }
 
 
-
+    @keyframes fade-in{
+        0% {
+            opacity:0;
+        } 100% {
+            opacity:1;
+        }
+    }
+    g{
+        animation: fade-in 1s;
+    }
     // SVGS 
     #c2-r2{
         // latin america - fought in civil war
@@ -169,6 +179,49 @@ section{
         justify-self: center;
         // border:3px solid greenyellow;
     }
+    #c3-r3{
+        // africa- transitioned to organized crime
+        grid-column: 3/4;
+        grid-row: 3/4;
+        justify-self: center;
+    }
+    #c3-r4{
+        // mid eastern africa- transitioned to organized crime
+        grid-column: 3/4;
+        grid-row: 4/5;
+        justify-self: center;
+    }    
+    #c3-r5{
+        // west - transitioned to organized crime
+        grid-column: 3/4;
+        grid-row: 5/6;
+        justify-self: center;
+    }
+    #c3-r6{
+        // central eurasia - transitioned to organized crime
+        grid-column: 3/4;
+        grid-row: 6/7;
+        justify-self: center;
+    }
+    #c3-r7{
+        // south asia - transitioned to organized crime
+        grid-column: 3/4;
+        grid-row: 7/8;
+        justify-self: center;
+    }
+    #c3-r8{
+        // south east asia - transitioned to organized crime
+        grid-column: 3/4;
+        grid-row: 8/9;
+        justify-self: center;
+    }
+    #c3-r9{
+        //  east asia - transitioned to organized crime
+        grid-column: 3/4;
+        grid-row: 9/10;
+        justify-self: center;
+    }
+    
 
 }
 

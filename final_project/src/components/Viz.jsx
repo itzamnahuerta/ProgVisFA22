@@ -36,6 +36,7 @@ export default class Viz extends Component {
         d.area_of_operation = d.area_of_operation;
         d.foughtincivilwar = d.foughtincivilwar;
         d.transitioned_to_organized_crime = d.transitioned_to_organized_crime;
+        d.transitioned_from_organized_crime_to_resistance = d.transitioned_from_organized_crime_to_resistance;
 
 
     })
@@ -189,6 +190,7 @@ export default class Viz extends Component {
       .attr("width", 600)
       .attr("height", 600)
       .attr("fill", "red")
+
 
       // AFRICA
       const africaSvg = 
@@ -375,6 +377,154 @@ export default class Viz extends Component {
       .attr("width", 600)
       .attr("height", 600)
       .attr("fill", "red")
+
+      // AFRICA
+      const africaSvg = 
+      d3.select('#c3-r3')
+      .selectAll('#c3-r3')
+      .attr("id","c3-r3")
+      .data(transitionedToOrgCrime(window.africaData)) 
+      .enter()
+      .append('g')
+      .attr("transform", (d,i) => {
+        const x = (i % perRow + 2) * size;
+        const y = (Math.floor(i/perRow) +.60) * sizeY;
+        return "translate(" + [x,y] + ")"
+      });
+
+      africaSvg.append('path')
+      .attr("d", rebel_icon)
+      .attr("width", 600)
+      .attr("height", 600)
+      // .attr("fill", "#CBC7CF") 
+
+      // latinAmericaSvg.append('text')
+      // .text("test")
+
+
+      // MID EASTERN AFRICA
+      const midEasternafricaSvg = 
+      d3.select('#c3-r4')
+      .selectAll('#c3-r4')
+      .attr("id","c3-r4")
+      .data(transitionedToOrgCrime(window.midEastnAfricaData)) 
+      .enter()
+      .append('g')
+      .attr("transform", (d,i) => {
+        const x = (i % perRow + 2) * size;
+        const y = (Math.floor(i/perRow) +.60) * sizeY;
+        return "translate(" + [x,y] + ")"
+      });
+
+      midEasternafricaSvg.append('path')
+      .attr("d", rebel_icon)
+      .attr("width", 600)
+      .attr("height", 600)
+      .attr("fill", "#CBC7CF") 
+
+      // WEST
+      const westSvg = 
+      d3.select('#c3-r5')
+      .selectAll('#c3-r5')
+      .attr("id","c3-r5")
+      .data(transitionedToOrgCrime(window.westData)) 
+      .enter()
+      .append('g')
+      .attr("transform", (d,i) => {
+        const x = (i % perRow + 2) * size;
+        const y = (Math.floor(i/perRow) +.60) * sizeY;
+        return "translate(" + [x,y] + ")"
+      });
+
+      westSvg.append('path')
+      .attr("d", rebel_icon)
+      .attr("width", 600)
+      .attr("height", 600)
+      .attr("fill", "#CBC7CF") 
+
+      // CENTRAL EURASIA
+      const centralEurasiaSvg = 
+      d3.select('#c3-r6')
+      .selectAll('#c3-r6')
+      .attr("id","c3-r6")
+      .data(transitionedToOrgCrime(window.centralEurasiaData)) 
+      .enter()
+      .append('g')
+      .attr("transform", (d,i) => {
+        const x = (i % perRow + 2) * size;
+        const y = (Math.floor(i/perRow) +.60) * sizeY;
+        return "translate(" + [x,y] + ")"
+      });
+
+      centralEurasiaSvg.append('path')
+      .attr("d", rebel_icon)
+      .attr("width", 600)
+      .attr("height", 600)
+      .attr("fill", "#CBC7CF") 
+    
+
+      // SOUTH ASIA
+      const southAsiaSvg = 
+      d3.select('#c3-r7')
+      .selectAll('#c3-r7')
+      .attr("id","c3-r7")
+      .data(transitionedToOrgCrime(window.southAsiaData)) 
+      .enter()
+      .append('g')
+      .attr("transform", (d,i) => {
+        const x = (i % perRow + 2) * size;
+        const y = (Math.floor(i/perRow) +.60) * sizeY;
+        return "translate(" + [x,y] + ")"
+      });
+
+      southAsiaSvg.append('path')
+      .attr("d", rebel_icon)
+      .attr("width", 600)
+      .attr("height", 600)
+      .attr("fill", "#CBC7CF")    
+      
+
+      // SOUTH EAST ASIA
+      const southEastAsiaSvg = 
+      d3.select('#c3-r8')
+      .selectAll('#c3-r8')
+      .attr("id","c3-r8")
+      .data(transitionedToOrgCrime(window.southEastAsiaData)) 
+      .enter()
+      .append('g')
+      .attr("transform", (d,i) => {
+        const x = (i % perRow + 2) * size;
+        const y = (Math.floor(i/perRow) +.60) * sizeY;
+        return "translate(" + [x,y] + ")"
+      });
+
+      southEastAsiaSvg.append('path')
+      .attr("d", rebel_icon)
+      .attr("width", 600)
+      .attr("height", 600)
+      .attr("fill", "#CBC7CF") 
+
+      // SOUTH ASIA
+      const eastAsiaSvg = 
+      d3.select('#c3-r9')
+      .selectAll('#c3-r9')
+      .attr("id","c3-r9")
+      .data(transitionedToOrgCrime(window.eastAsiaData)) 
+      .enter()
+      .append('g')
+      .attr("transform", (d,i) => {
+        const x = (i % perRow + 2) * size;
+        const y = (Math.floor(i/perRow) +.60) * sizeY;
+        return "translate(" + [x,y] + ")"
+      });
+
+      eastAsiaSvg.append('path')
+      .attr("d", rebel_icon)
+      .attr("width", 600)
+      .attr("height", 600)
+      .attr("fill", "#CBC7CF")
+
+
     }
     
 
