@@ -37,7 +37,7 @@ export default class Viz extends Component {
         d.foughtincivilwar = d.foughtincivilwar;
         d.transitioned_to_organized_crime = d.transitioned_to_organized_crime;
         d.transitioned_from_organized_crime_to_resistance = d.transitioned_from_organized_crime_to_resistance;
-
+        d.drugtrade = d.drugtrade;
 
     })
 
@@ -137,6 +137,8 @@ export default class Viz extends Component {
     // console.log("data with undefined objects:",latinAmericaData.filter(Boolean))
 
   
+    //  ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    // ATTRIBUTE 1
 
     // FUNCTION TO GET REBEL GROUPS THAT FOUGHT IN CIVIL WAR BY REGION
     let foughtinCivilWar = (region) => {
@@ -164,8 +166,6 @@ export default class Viz extends Component {
       // console.log(dataForRegion)
       return dataForRegion // returning the array of objects 
     }
-
-
 
 
 
@@ -339,7 +339,8 @@ export default class Viz extends Component {
       .attr("fill", "#CBC7CF")
     }
 
-
+    //  ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    // ATTRIBUTE 2
 
     // FUNCTION TO GET REBEL GROUPS THAT HAVE TRANSITIONED TO ORGANIZED CRIME
     let transitionedToOrgCrime = (region) => {
@@ -527,6 +528,382 @@ export default class Viz extends Component {
 
     }
     
+    //  ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    // ATTRIBUTE 3
+
+    // FUNCTION TO GET ATTRIBUTE FROM REGIONS
+    let orgCrimeToRes = (region) => {
+      let dataforRegion = []
+      let updatedData = region.filter(Boolean);
+
+      updatedData.map((key,value) => {
+        if(key['transitioned_from_organized_crime_to_resistance'] == 1){
+          // console.log('transition from org crime to resistence:',key)
+          dataforRegion.push(key)
+        }
+      })
+      return dataforRegion;
+    }
+
+    // TESTING
+    // orgCrimeToRes(window.latinAmericaData)
+
+    let transCrimetoRes = () => {
+      // LATIN AMERICA
+      const latinAmericaSvg = 
+      d3.select('#c4-r2')
+      .selectAll('#c4-r2')
+      .data(orgCrimeToRes(window.latinAmericaData)) 
+      .enter()
+      .append('g')
+      .attr("transform", (d,i) => {
+        const x = (i % perRow + 2) * size;
+        const y = (Math.floor(i/perRow) +.60) * sizeY;
+        return "translate(" + [x,y] + ")"
+      });
+
+      latinAmericaSvg.append('path')
+      .attr("d", rebel_icon)
+      .attr("width", 600)
+      .attr("height", 600)
+      .attr("fill", "red")
+
+      // AFRICA
+      const africaSvg = 
+      d3.select('#c4-r3')
+      .selectAll('#c4-r3')
+      .attr("id","c4-r3")
+      .data(orgCrimeToRes(window.africaData)) 
+      .enter()
+      .append('g')
+      .attr("transform", (d,i) => {
+        const x = (i % perRow + 2) * size;
+        const y = (Math.floor(i/perRow) +.60) * sizeY;
+        return "translate(" + [x,y] + ")"
+      });
+
+      africaSvg.append('path')
+      .attr("d", rebel_icon)
+      .attr("width", 600)
+      .attr("height", 600)
+      // .attr("fill", "#CBC7CF") 
+
+      // latinAmericaSvg.append('text')
+      // .text("test")
+
+
+      // MID EASTERN AFRICA
+      const midEasternafricaSvg = 
+      d3.select('#c4-r4')
+      .selectAll('#c4-r4')
+      .attr("id","c4-r4")
+      .data(orgCrimeToRes(window.midEastnAfricaData)) 
+      .enter()
+      .append('g')
+      .attr("transform", (d,i) => {
+        const x = (i % perRow + 2) * size;
+        const y = (Math.floor(i/perRow) +.60) * sizeY;
+        return "translate(" + [x,y] + ")"
+      });
+
+      midEasternafricaSvg.append('path')
+      .attr("d", rebel_icon)
+      .attr("width", 600)
+      .attr("height", 600)
+      .attr("fill", "#CBC7CF") 
+
+      // WEST
+      const westSvg = 
+      d3.select('#c4-r5')
+      .selectAll('#c4-r5')
+      .attr("id","c4-r5")
+      .data(orgCrimeToRes(window.westData)) 
+      .enter()
+      .append('g')
+      .attr("transform", (d,i) => {
+        const x = (i % perRow + 2) * size;
+        const y = (Math.floor(i/perRow) +.60) * sizeY;
+        return "translate(" + [x,y] + ")"
+      });
+
+      westSvg.append('path')
+      .attr("d", rebel_icon)
+      .attr("width", 600)
+      .attr("height", 600)
+      .attr("fill", "#CBC7CF") 
+
+      // CENTRAL EURASIA
+      const centralEurasiaSvg = 
+      d3.select('#c4-r6')
+      .selectAll('#c4-r6')
+      .attr("id","c4-r6")
+      .data(orgCrimeToRes(window.centralEurasiaData)) 
+      .enter()
+      .append('g')
+      .attr("transform", (d,i) => {
+        const x = (i % perRow + 2) * size;
+        const y = (Math.floor(i/perRow) +.60) * sizeY;
+        return "translate(" + [x,y] + ")"
+      });
+
+      centralEurasiaSvg.append('path')
+      .attr("d", rebel_icon)
+      .attr("width", 600)
+      .attr("height", 600)
+      .attr("fill", "#CBC7CF") 
+    
+
+      // SOUTH ASIA
+      const southAsiaSvg = 
+      d3.select('#c4-r7')
+      .selectAll('#c4-r7')
+      .attr("id","c4-r7")
+      .data(orgCrimeToRes(window.southAsiaData)) 
+      .enter()
+      .append('g')
+      .attr("transform", (d,i) => {
+        const x = (i % perRow + 2) * size;
+        const y = (Math.floor(i/perRow) +.60) * sizeY;
+        return "translate(" + [x,y] + ")"
+      });
+
+      southAsiaSvg.append('path')
+      .attr("d", rebel_icon)
+      .attr("width", 600)
+      .attr("height", 600)
+      .attr("fill", "#CBC7CF")    
+      
+
+      // SOUTH EAST ASIA
+      const southEastAsiaSvg = 
+      d3.select('#c4-r8')
+      .selectAll('#c4-r8')
+      .attr("id","c4-r8")
+      .data(orgCrimeToRes(window.southEastAsiaData)) 
+      .enter()
+      .append('g')
+      .attr("transform", (d,i) => {
+        const x = (i % perRow + 2) * size;
+        const y = (Math.floor(i/perRow) +.60) * sizeY;
+        return "translate(" + [x,y] + ")"
+      });
+
+      southEastAsiaSvg.append('path')
+      .attr("d", rebel_icon)
+      .attr("width", 600)
+      .attr("height", 600)
+      .attr("fill", "#CBC7CF") 
+
+      // SOUTH ASIA
+      const eastAsiaSvg = 
+      d3.select('#c4-r9')
+      .selectAll('#c4-r9')
+      .attr("id","c4-r9")
+      .data(orgCrimeToRes(window.eastAsiaData)) 
+      .enter()
+      .append('g')
+      .attr("transform", (d,i) => {
+        const x = (i % perRow + 2) * size;
+        const y = (Math.floor(i/perRow) +.60) * sizeY;
+        return "translate(" + [x,y] + ")"
+      });
+
+      eastAsiaSvg.append('path')
+      .attr("d", rebel_icon)
+      .attr("width", 600)
+      .attr("height", 600)
+      .attr("fill", "#CBC7CF")
+
+    }
+
+    //  ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    // ATTRIBUTE 4 
+
+
+    let inDrugTrade = (region) => {
+      let dataforRegion = []
+      let updatedData = region.filter(Boolean);
+
+      updatedData.map((key,value) => {
+        if(key['drugtrade'] == 1){
+          // console.log('drug trade:',key)
+          dataforRegion.push(key)
+        }
+      })
+      return dataforRegion;
+    }
+
+    // TESTING
+    // inDrugTrade(window.latinAmericaData)
+
+    let drugTrade = () => {
+      // LATIN AMERICA
+      const latinAmericaSvg = 
+      d3.select('#c5-r2')
+      .selectAll('#c5-r2')
+      .data(inDrugTrade(window.latinAmericaData)) 
+      .enter()
+      .append('g')
+      .attr("transform", (d,i) => {
+        const x = (i % perRow + 2) * size;
+        const y = (Math.floor(i/perRow) +.60) * sizeY;
+        return "translate(" + [x,y] + ")"
+      });
+
+      latinAmericaSvg.append('path')
+      .attr("d", rebel_icon)
+      .attr("width", 600)
+      .attr("height", 600)
+      .attr("fill", "red")
+
+      // AFRICA
+      const africaSvg = 
+      d3.select('#c5-r3')
+      .selectAll('#c5-r3')
+      .attr("id","c5-r3")
+      .data(inDrugTrade(window.africaData)) 
+      .enter()
+      .append('g')
+      .attr("transform", (d,i) => {
+        const x = (i % perRow + 2) * size;
+        const y = (Math.floor(i/perRow) +.60) * sizeY;
+        return "translate(" + [x,y] + ")"
+      });
+
+      africaSvg.append('path')
+      .attr("d", rebel_icon)
+      .attr("width", 600)
+      .attr("height", 600)
+      // .attr("fill", "#CBC7CF") 
+
+      // latinAmericaSvg.append('text')
+      // .text("test")
+
+
+      // MID EASTERN AFRICA
+      const midEasternafricaSvg = 
+      d3.select('#c5-r4')
+      .selectAll('#c5-r4')
+      .attr("id","c5-r4")
+      .data(inDrugTrade(window.midEastnAfricaData)) 
+      .enter()
+      .append('g')
+      .attr("transform", (d,i) => {
+        const x = (i % perRow + 2) * size;
+        const y = (Math.floor(i/perRow) +.60) * sizeY;
+        return "translate(" + [x,y] + ")"
+      });
+
+      midEasternafricaSvg.append('path')
+      .attr("d", rebel_icon)
+      .attr("width", 600)
+      .attr("height", 600)
+      .attr("fill", "#CBC7CF") 
+
+      // WEST
+      const westSvg = 
+      d3.select('#c5-r5')
+      .selectAll('#c5-r5')
+      .attr("id","c5-r5")
+      .data(inDrugTrade(window.westData)) 
+      .enter()
+      .append('g')
+      .attr("transform", (d,i) => {
+        const x = (i % perRow + 2) * size;
+        const y = (Math.floor(i/perRow) +.60) * sizeY;
+        return "translate(" + [x,y] + ")"
+      });
+
+      westSvg.append('path')
+      .attr("d", rebel_icon)
+      .attr("width", 600)
+      .attr("height", 600)
+      .attr("fill", "#CBC7CF") 
+
+      // CENTRAL EURASIA
+      const centralEurasiaSvg = 
+      d3.select('#c5-r6')
+      .selectAll('#c5-r6')
+      .attr("id","c5-r6")
+      .data(inDrugTrade(window.centralEurasiaData)) 
+      .enter()
+      .append('g')
+      .attr("transform", (d,i) => {
+        const x = (i % perRow + 2) * size;
+        const y = (Math.floor(i/perRow) +.60) * sizeY;
+        return "translate(" + [x,y] + ")"
+      });
+
+      centralEurasiaSvg.append('path')
+      .attr("d", rebel_icon)
+      .attr("width", 600)
+      .attr("height", 600)
+      .attr("fill", "#CBC7CF") 
+    
+
+      // SOUTH ASIA
+      const southAsiaSvg = 
+      d3.select('#c5-r7')
+      .selectAll('#c5-r7')
+      .attr("id","c5-r7")
+      .data(inDrugTrade(window.southAsiaData)) 
+      .enter()
+      .append('g')
+      .attr("transform", (d,i) => {
+        const x = (i % perRow + 2) * size;
+        const y = (Math.floor(i/perRow) +.60) * sizeY;
+        return "translate(" + [x,y] + ")"
+      });
+
+      southAsiaSvg.append('path')
+      .attr("d", rebel_icon)
+      .attr("width", 600)
+      .attr("height", 600)
+      .attr("fill", "#CBC7CF")    
+      
+
+      // SOUTH EAST ASIA
+      const southEastAsiaSvg = 
+      d3.select('#c5-r8')
+      .selectAll('#c5-r8')
+      .attr("id","c5-r8")
+      .data(inDrugTrade(window.southEastAsiaData)) 
+      .enter()
+      .append('g')
+      .attr("transform", (d,i) => {
+        const x = (i % perRow + 2) * size;
+        const y = (Math.floor(i/perRow) +.60) * sizeY;
+        return "translate(" + [x,y] + ")"
+      });
+
+      southEastAsiaSvg.append('path')
+      .attr("d", rebel_icon)
+      .attr("width", 600)
+      .attr("height", 600)
+      .attr("fill", "#CBC7CF") 
+
+      // SOUTH ASIA
+      const eastAsiaSvg = 
+      d3.select('#c5-r9')
+      .selectAll('#c5-r9')
+      .attr("id","c5-r9")
+      .data(inDrugTrade(window.eastAsiaData)) 
+      .enter()
+      .append('g')
+      .attr("transform", (d,i) => {
+        const x = (i % perRow + 2) * size;
+        const y = (Math.floor(i/perRow) +.60) * sizeY;
+        return "translate(" + [x,y] + ")"
+      });
+
+      eastAsiaSvg.append('path')
+      .attr("d", rebel_icon)
+      .attr("width", 600)
+      .attr("height", 600)
+      .attr("fill", "#CBC7CF")
+
+    }
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     // ATTRIBUTE 1: FOUGHT IN A CIVIL WAR
     d3.select('#c1-r1')
@@ -542,6 +919,22 @@ export default class Viz extends Component {
     .on('click',function(){
       console.log("transitioned to organized crime btn clicked!")
       transToOrgCrime()
+    })
+
+    // ATTRIBUTE 3: TRANSITIONED FROM ORGANIZED CRIME TO RESISTENCE
+    d3.select('#c3-r1')
+    .attr('class','attr-3')
+    .on('click',function(){
+      console.log("attr3 clicked!")
+      transCrimetoRes()
+    })
+
+    // ATTRIBUTE 4: DRUGTRADE
+    d3.select('#c4-r1')
+    .attr('class','attr-4')
+    .on('click',function(){
+      console.log("attr4 clicked!")
+      drugTrade()
     })
 
 
@@ -690,6 +1083,116 @@ export default class Viz extends Component {
           height='100%'
           width='100%'> 
         </svg>
+
+
+        <div id="c3-r1">
+        <h5 > TRANSITIONED FROM ORGANIZED CRIME TO RESISTENCE</h5>
+        </div>
+
+        <svg 
+          id='c4-r2'
+          height='100%'
+          width='100%'> 
+        </svg>
+
+        <svg 
+          id='c4-r3'
+          height='100%'
+          width='100%'> 
+        </svg>
+
+
+        <svg 
+          id='c4-r4'
+          height='100%'
+          width='100%'> 
+        </svg>
+
+        <svg 
+          id='c4-r5'
+          height='100%'
+          width='100%'> 
+        </svg>
+
+        <svg 
+          id='c4-r6'
+          height='100%'
+          width='100%'> 
+        </svg>
+
+        <svg 
+          id='c4-r7'
+          height='100%'
+          width='100%'> 
+        </svg>
+
+        <svg 
+          id='c4-r8'
+          height='100%'
+          width='100%'> 
+        </svg>
+
+        <svg 
+          id='c4-r9'
+          height='100%'
+          width='100%'> 
+        </svg>
+
+        <div id="c4-r1">
+        <h5 > DRUGTRADE</h5>
+        </div>
+
+        <svg 
+          id='c5-r2'
+          height='100%'
+          width='100%'> 
+        </svg>
+
+        <svg 
+          id='c5-r3'
+          height='100%'
+          width='100%'> 
+        </svg>
+
+
+        <svg 
+          id='c5-r4'
+          height='100%'
+          width='100%'> 
+        </svg>
+
+        <svg 
+          id='c5-r5'
+          height='100%'
+          width='100%'> 
+        </svg>
+
+        <svg 
+          id='c5-r6'
+          height='100%'
+          width='100%'> 
+        </svg>
+
+        <svg 
+          id='c5-r7'
+          height='100%'
+          width='100%'> 
+        </svg>
+
+        <svg 
+          id='c5-r8'
+          height='100%'
+          width='100%'> 
+        </svg>
+
+        <svg 
+          id='c5-r9'
+          height='100%'
+          width='100%'> 
+        </svg>        
+
+
+
 
       </section>
     )
