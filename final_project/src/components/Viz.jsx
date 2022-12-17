@@ -164,6 +164,7 @@ export default class Viz extends Component {
 
     // FUNCTION TO DISPLAY FOUGHT IN CIVIL WAR TO THE DOM
     let foughtCivilWar = () => {
+
       // LATIN AMERICA
       const latinAmericaSvg = 
       d3.select('#c2-r2')
@@ -184,7 +185,6 @@ export default class Viz extends Component {
       .attr("fill", "red")
 
       // AFRICA
-
       const africaSvg = 
       d3.select('#c2-r3')
       .selectAll('#c2-r3')
@@ -206,43 +206,143 @@ export default class Viz extends Component {
 
       // latinAmericaSvg.append('text')
       // .text("test")
+
+
+      // MID EASTERN AFRICA
+      const midEasternafricaSvg = 
+      d3.select('#c2-r4')
+      .selectAll('#c2-r4')
+      .attr("id","c2-r4")
+      .data(foughtinCivilWar(window.midEastnAfricaData)) 
+      .enter()
+      .append('g')
+      .attr("transform", (d,i) => {
+        const x = (i % perRow + 2) * size;
+        const y = (Math.floor(i/perRow) +.60) * sizeY;
+        return "translate(" + [x,y] + ")"
+      });
+
+      midEasternafricaSvg.append('path')
+      .attr("d", rebel_icon)
+      .attr("width", 600)
+      .attr("height", 600)
+      .attr("fill", "#CBC7CF") 
+
+      // WEST
+      const westSvg = 
+      d3.select('#c2-r5')
+      .selectAll('#c2-r5')
+      .attr("id","c2-r5")
+      .data(foughtinCivilWar(window.westData)) 
+      .enter()
+      .append('g')
+      .attr("transform", (d,i) => {
+        const x = (i % perRow + 2) * size;
+        const y = (Math.floor(i/perRow) +.60) * sizeY;
+        return "translate(" + [x,y] + ")"
+      });
+
+      westSvg.append('path')
+      .attr("d", rebel_icon)
+      .attr("width", 600)
+      .attr("height", 600)
+      .attr("fill", "#CBC7CF") 
+
+      // CENTRAL EURASIA
+      const centralEurasiaSvg = 
+      d3.select('#c2-r6')
+      .selectAll('#c2-r6')
+      .attr("id","c2-r6")
+      .data(foughtinCivilWar(window.centralEurasiaData)) 
+      .enter()
+      .append('g')
+      .attr("transform", (d,i) => {
+        const x = (i % perRow + 2) * size;
+        const y = (Math.floor(i/perRow) +.60) * sizeY;
+        return "translate(" + [x,y] + ")"
+      });
+
+      centralEurasiaSvg.append('path')
+      .attr("d", rebel_icon)
+      .attr("width", 600)
+      .attr("height", 600)
+      .attr("fill", "#CBC7CF") 
+    
+
+      // SOUTH ASIA
+      const southAsiaSvg = 
+      d3.select('#c2-r7')
+      .selectAll('#c2-r7')
+      .attr("id","c2-r7")
+      .data(foughtinCivilWar(window.southAsiaData)) 
+      .enter()
+      .append('g')
+      .attr("transform", (d,i) => {
+        const x = (i % perRow + 2) * size;
+        const y = (Math.floor(i/perRow) +.60) * sizeY;
+        return "translate(" + [x,y] + ")"
+      });
+
+      southAsiaSvg.append('path')
+      .attr("d", rebel_icon)
+      .attr("width", 600)
+      .attr("height", 600)
+      .attr("fill", "#CBC7CF")    
+      
+
+      // SOUTH EAST ASIA
+      const southEastAsiaSvg = 
+      d3.select('#c2-r8')
+      .selectAll('#c2-r8')
+      .attr("id","c2-r8")
+      .data(foughtinCivilWar(window.southEastAsiaData)) 
+      .enter()
+      .append('g')
+      .attr("transform", (d,i) => {
+        const x = (i % perRow + 2) * size;
+        const y = (Math.floor(i/perRow) +.60) * sizeY;
+        return "translate(" + [x,y] + ")"
+      });
+
+      southEastAsiaSvg.append('path')
+      .attr("d", rebel_icon)
+      .attr("width", 600)
+      .attr("height", 600)
+      .attr("fill", "#CBC7CF") 
+
+      // SOUTH ASIA
+      const eastAsiaSvg = 
+      d3.select('#c2-r9')
+      .selectAll('#c2-r9')
+      .attr("id","c2-r9")
+      .data(foughtinCivilWar(window.eastAsiaData)) 
+      .enter()
+      .append('g')
+      .attr("transform", (d,i) => {
+        const x = (i % perRow + 2) * size;
+        const y = (Math.floor(i/perRow) +.60) * sizeY;
+        return "translate(" + [x,y] + ")"
+      });
+
+      eastAsiaSvg.append('path')
+      .attr("d", rebel_icon)
+      .attr("width", 600)
+      .attr("height", 600)
+      .attr("fill", "#CBC7CF")
+
+
     }
 
 
     
-    // ================ T E S T ==================
+    
 
+    // ATTRIBUTE 1: FOUGHT IN A CIVIL WAR
     d3.select('#c1-r1')
     .on('click',function(){
       console.log("fought in civil war btn clicked!")
       foughtCivilWar()
     })
-
-
-
-
-
-
-    // const latinAmericaSvg = svg.selectAll('g')
-    //   .data(foughtinCivilWar(window.latinAmericaData)) 
-    //   .enter()
-    //   .append('g')
-    //   .attr("transform", (d,i) => {
-    //     const x = (i % perRow + 2) * size;
-    //     const y = (Math.floor(i/perRow) +.60) * sizeY;
-    //     return "translate(" + [x,y] + ")";
-    // });
-
-
-
-    // // latinAmericaSvg.append('text')
-    // // .text("test")
-
-    // const LA = latinAmericaSvg.append('path')
-    // .attr("d", rebel_icon)
-    // .attr("width", 600)
-    // .attr("height", 600)
-    // .attr("fill", "#CBC7CF");
 
 
 
@@ -268,14 +368,52 @@ export default class Viz extends Component {
           height='100%'
           width='100%'> 
         </svg>
+
         <svg 
           id='c2-r3'
           height='100%'
           width='100%'> 
         </svg>
+
+        <svg 
+          id='c2-r4'
+          height='100%'
+          width='100%'> 
+        </svg>
+
+        <svg 
+          id='c2-r5'
+          height='100%'
+          width='100%'> 
+        </svg>
+
+        <svg 
+          id='c2-r6'
+          height='100%'
+          width='100%'> 
+        </svg>
+
+        <svg 
+          id='c2-r7'
+          height='100%'
+          width='100%'> 
+        </svg>
+
+        <svg 
+          id='c2-r8'
+          height='100%'
+          width='100%'> 
+        </svg>
+
+        <svg 
+          id='c2-r9'
+          height='100%'
+          width='100%'> 
+        </svg>
+
         <h4 id="c2-r1"> DRUG TRADE</h4>
         <svg 
-          id='c1-r2'
+          id='c3-r2'
           height='100%'
           width='100%'> 
         </svg>
