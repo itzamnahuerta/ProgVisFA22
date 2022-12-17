@@ -1,91 +1,102 @@
+@import '../styles/styles.scss';
+
 section{
     height: 900vh;
 }
 
 .grid-viz{
-    border: 3px solid red;
+    margin-top: 4em;
+    font-family:  HK-Grotesk-Light;
+    // border: 2px solid salmon;
     height: 100%;
     display:grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: auto;
-    // grid-template-rows: repeat(9,1fr);
+    grid-template-columns: 90px 250px 200px 1fr 1fr;
+    grid-template-rows: 70px 100px 100px 100px 100px 100px 100px 100px 100px;
 
     // ATTRIBUTES NAMES
     #c1-r1{
         // attribute: fought in civil war
         grid-column: 2/3;
         grid-row: 1/2;
-        // font-size: 3em;
-        margin-top: 5em;
-        justify-self: center;
+        // border-right:1px solid black; 
+        text-align: center;
     }
     #c2-r1 {
-        // attribute: drug trade
+        // attribute: transitioned to organized crime
         grid-column: 3/4;
         grid-row: 1/2;
-        // font-size: 3em;
-        margin-top: 5em;
-        justify-self: center;
+        text-align: center;
     }
 
 
     // REGION NAMES
+    .region-title{
+        transform: rotate(-90deg);
+        align-self: flex-end;
+        font-size: 8pt;
+        cursor: crosshair;
+    }
+    h5{
+        font-size: 8pt;
+        cursor: crosshair;
+        justify-self: center;
+    }
     #c1-r2 {
         // region: latin america
         grid-column: 1/2;
         grid-row: 2/3;
-        margin-top: 5em;
+        padding-top: 1em;
         justify-self: top;
+        // border: 2px solid black;
     }
     #c1-r3 {
         // region: africa
         grid-column: 1/2;
         grid-row: 3/4;
-        margin-top: 5em;
-        justify-self: top;
+        // border: 2px solid black;
     }
     #c1-r4 {
         // region: mid eastern africa
         grid-column: 1/2;
         grid-row: 4/5;
-        margin-top: 5em;
-        justify-self: top;
+        padding-top: 1em;
+        text-align: center;
+        // border: 2px solid black;s
     }
     #c1-r5 {
         // region: west
         grid-column: 1/2;
         grid-row: 5/6;
-        margin-top: 5em;
-        justify-self: top;
+        // border: 2px solid black;
     }
     #c1-r6 {
         // region: central eurasia
         grid-column: 1/2;
         grid-row: 6/7;
-        margin-top: 5em;
-        justify-self: top;
+        // border: 2px solid black;
     }
     #c1-r7 {
         // region: south asia
         grid-column: 1/2;
         grid-row: 7/7;
-        margin-top: 5em;
-        justify-self: top;
+        padding-top: 1em;
+        text-align: center;
+        // border: 2px solid black;
     }
     #c1-r8 {
         // region: south east asia
         grid-column: 1/2;
         grid-row: 8/9;
-        margin-top: 5em;
-        justify-self: top;
+        text-align: center;
+        border: 1px solid transparent;
     }
     #c1-r9 {
         // region: south east asia
         grid-column: 1/2;
         grid-row: 9/9;
-
-        margin-top: 5em;
-        justify-self: top;
+        padding-top: 1em;
+        text-align: center;
+        // border: 2px solid black;
     }
 
 
@@ -96,60 +107,68 @@ section{
         grid-column: 2/3;
         grid-row: 2/3;
         justify-self: center;
-        border:3px solid red;
+        // border:3px solid red;
     }
     #c2-r3{
         // africa - fought in civil war
         grid-column: 2/3;
         grid-row: 3/4;
         justify-self: center;
-        border:3px solid blue;
+        // border:3px solid blue;
     }
     #c2-r4{
         // mid eastern africa - fought in civil war
         grid-column: 2/3;
         grid-row: 4/5;
         justify-self: center;
-        border:3px solid yellow;
+        // border:3px solid yellow;
     }
     #c2-r5{
         // west - fought in civil war
         grid-column: 2/3;
         grid-row: 5/6;
         justify-self: center;
-        border:3px solid blue;
+        // border:3px solid blue;
     }
     #c2-r6{
         // central eurasia - fought in civil war
         grid-column: 2/3;
         grid-row: 6/7;
         justify-self: center;
-        border:3px solid orange;
+        // border:3px solid orange;
     }
     #c2-r7{
         // south asia - fought in civil war
         grid-column: 2/3;
         grid-row: 7/8;
         justify-self: center;
-        border:3px solid purple;
+        // border:3px solid purple;
     }
     #c2-r8{
         // south east asia - fought in civil war
         grid-column: 2/3;
         grid-row: 8/9;
         justify-self: center;
-        border:3px solid pink;
+        // border:3px solid pink;
     }
     #c2-r9{
         // east asia - fought in civil war
         grid-column: 2/3;
         grid-row: 9/9;
         justify-self: center;
-        border:3px solid green;
+        // border:3px solid green;
     }
 
     path{
-        transform: scale(.5);
+        transform: scale(.4);
     }
+    #c3-r2{
+        // latin america - transitioned to organized crime
+        grid-column: 3/4;
+        grid-row: 2/3;
+        justify-self: center;
+        // border:3px solid greenyellow;
+    }
+
 }
 

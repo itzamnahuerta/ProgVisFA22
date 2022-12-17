@@ -11,8 +11,6 @@ export default class Viz extends Component {
     }
   }
 
-
-
   render() {
 
     // SVG PATH
@@ -22,8 +20,8 @@ export default class Viz extends Component {
     d3.csv(data).then(showData)
 
     // ICONS GRID
-    const perRow = 10;
-    const size = 20;
+    const perRow = 15;
+    const size = 14;
     const sizeY= 20;
 
 
@@ -37,6 +35,8 @@ export default class Viz extends Component {
         d.english_translation = d.english_translation;
         d.area_of_operation = d.area_of_operation;
         d.foughtincivilwar = d.foughtincivilwar;
+        d.transitioned_to_organized_crime = d.transitioned_to_organized_crime;
+
 
     })
 
@@ -137,14 +137,18 @@ export default class Viz extends Component {
 
   
 
-    // FUNCTION TO GET ORGS THAT FOUGHT IN CIVIL WAR BY REGION
+    // FUNCTION TO GET REBEL GROUPS THAT FOUGHT IN CIVIL WAR BY REGION
     let foughtinCivilWar = (region) => {
           // - - - - - - - - - - - - - - - - - - - - - - - - - -
           //  Cross reference with jupyter notebook analysis 
           // 
           //  Latin America = 24 cases 
           //  Africa        = 20 cases
-          // 
+          //  Mid Eastern Africa = 59 cases
+          //  West          = 12 cases
+          //  Central Eurasia = 7 cases
+          //  South East Asia = 15 cases
+          //  East Asia = 0 cases 
           // - - - - - - - - - - - - - - - - - - - - - - - - - -
       let dataForRegion = []
       let updatedData = region.filter(Boolean) //// the filter boolean removes all undefined objects within the array 
@@ -159,6 +163,8 @@ export default class Viz extends Component {
       // console.log(dataForRegion)
       return dataForRegion // returning the array of objects 
     }
+
+
 
 
 
@@ -329,19 +335,63 @@ export default class Viz extends Component {
       .attr("width", 600)
       .attr("height", 600)
       .attr("fill", "#CBC7CF")
-
-
     }
 
 
-    
+
+    // FUNCTION TO GET REBEL GROUPS THAT HAVE TRANSITIONED TO ORGANIZED CRIME
+    let transitionedToOrgCrime = (region) => {
+      let dataforRegion = []
+      let updatedData = region.filter(Boolean);
+
+      updatedData.map((key,value) => {
+        if(key['transitioned_to_organized_crime'] == 1){
+          // console.log('transition to org crime',key)
+          dataforRegion.push(key)
+        }
+      })
+      return dataforRegion;
+    }
+
+    // TESTING A REGION
+    // transitionedToOrgCrime(window.latinAmericaData)
+
+    let transToOrgCrime = () => {
+      // LATIN AMERICA
+      const latinAmericaSvg = 
+      d3.select('#c3-r2')
+      .selectAll('#c3-r2')
+      .data(transitionedToOrgCrime(window.latinAmericaData)) 
+      .enter()
+      .append('g')
+      .attr("transform", (d,i) => {
+        const x = (i % perRow + 2) * size;
+        const y = (Math.floor(i/perRow) +.60) * sizeY;
+        return "translate(" + [x,y] + ")"
+      });
+
+      latinAmericaSvg.append('path')
+      .attr("d", rebel_icon)
+      .attr("width", 600)
+      .attr("height", 600)
+      .attr("fill", "red")
+    }
     
 
     // ATTRIBUTE 1: FOUGHT IN A CIVIL WAR
     d3.select('#c1-r1')
+    .attr('class','attr-1')
     .on('click',function(){
       console.log("fought in civil war btn clicked!")
       foughtCivilWar()
+    })
+
+    // ATTRIBUTE 2: TRANSITIONED TO ORGANIZED CRIME
+    d3.select('#c2-r1')
+    .attr('class','attr-2')
+    .on('click',function(){
+      console.log("transitioned to organized crime btn clicked!")
+      transToOrgCrime()
     })
 
 
@@ -352,17 +402,44 @@ export default class Viz extends Component {
     return (
       <section className="grid-viz" >
         {/* REGIONS */}
-        <h4  id="c1-r2"> LATIN AMERICA</h4>
-        <h4  id="c1-r3"> AFRICA </h4>
-        <h4  id="c1-r4"> MID EASTERN AFRICA </h4>
-        <h4  id="c1-r5"> WEST </h4>
-        <h4  id="c1-r6"> CENTRAL EURASIA </h4>
-        <h4  id="c1-r7"> SOUTH ASIA </h4>
-        <h4  id="c1-r8"> SOUTH EAST ASIA </h4>
-        <h4  id="c1-r9"> EAST ASIA </h4>
+        <div id="c1-r2">
+          <h5 className="region-title"> LATIN AMERICA</h5>
+        </div>
+       
+        <div id="c1-r3"> 
+        <h5 className="region-title"> AFRICA </h5>
+        </div>
+        
+        <div id="c1-r4">
+        <h5 className="region-title" > MID EASTERN AFRICA </h5>
+        </div>
+
+        <div id="c1-r5">
+        <h5 className="region-title" > WEST </h5>
+        </div>
+        
+        <div id="c1-r6">
+        <h5 className="region-title" > CENTRAL EURASIA </h5>
+        </div>
+        
+        <div id="c1-r7">
+        <h5 className="region-title" > SOUTH ASIA </h5>
+        </div>
+        
+        <div id="c1-r8">
+        <h5 className="region-title"> SOUTH EAST ASIA </h5>
+        </div>
+        
+        <div id="c1-r9">
+        <h5 className="region-title" > EAST ASIA </h5>
+        </div>
+        
 
         {/* ATTRIBUTES */}
-        <h4  id="c1-r1" > FOUGHT IN CIVIL WAR</h4>
+        <div id="c1-r1">
+        <h5> FOUGHT IN CIVIL WAR</h5>
+        </div>
+        
         <svg 
           id='c2-r2'
           height='100%'
@@ -410,14 +487,59 @@ export default class Viz extends Component {
           height='100%'
           width='100%'> 
         </svg>
+        
+        <div id="c2-r1">
+        <h5 > TRANSITIONED TO ORGANIZED CRIME</h5>
+        </div>
 
-        <h4 id="c2-r1"> DRUG TRADE</h4>
         <svg 
           id='c3-r2'
           height='100%'
           width='100%'> 
         </svg>
 
+        <svg 
+          id='c3-r3'
+          height='100%'
+          width='100%'> 
+        </svg>
+
+
+        <svg 
+          id='c3-r4'
+          height='100%'
+          width='100%'> 
+        </svg>
+
+        <svg 
+          id='c3-r5'
+          height='100%'
+          width='100%'> 
+        </svg>
+
+        <svg 
+          id='c3-r6'
+          height='100%'
+          width='100%'> 
+        </svg>
+
+        <svg 
+          id='c3-r7'
+          height='100%'
+          width='100%'> 
+        </svg>
+
+        <svg 
+          id='c3-r8'
+          height='100%'
+          width='100%'> 
+        </svg>
+
+        <svg 
+          id='c3-r9'
+          height='100%'
+          width='100%'> 
+        </svg>
 
       </section>
     )
