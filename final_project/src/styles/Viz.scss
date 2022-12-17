@@ -7,7 +7,8 @@ section{
     height: 100%;
     display:grid;
     grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(9, 1fr);
+    grid-template-rows: auto;
+    // grid-template-rows: repeat(9,1fr);
 
     // ATTRIBUTES NAMES
     #c1-r1{
@@ -29,7 +30,6 @@ section{
 
 
     // REGION NAMES
-
     #c1-r2 {
         // region: latin america
         grid-column: 1/2;
@@ -99,12 +99,55 @@ section{
         border:3px solid red;
     }
     #c2-r3{
-        // latin america - fought in civil war
+        // africa - fought in civil war
         grid-column: 2/3;
         grid-row: 3/4;
         justify-self: center;
         border:3px solid blue;
     }
+    #c2-r4{
+        // mid eastern africa - fought in civil war
+        grid-column: 2/3;
+        grid-row: 4/5;
+        justify-self: center;
+        border:3px solid yellow;
+    }
+    #c2-r5{
+        // west - fought in civil war
+        grid-column: 2/3;
+        grid-row: 5/6;
+        justify-self: center;
+        border:3px solid blue;
+    }
+    #c2-r6{
+        // central eurasia - fought in civil war
+        grid-column: 2/3;
+        grid-row: 6/7;
+        justify-self: center;
+        border:3px solid orange;
+    }
+    #c2-r7{
+        // south asia - fought in civil war
+        grid-column: 2/3;
+        grid-row: 7/8;
+        justify-self: center;
+        border:3px solid purple;
+    }
+    #c2-r8{
+        // south east asia - fought in civil war
+        grid-column: 2/3;
+        grid-row: 8/9;
+        justify-self: center;
+        border:3px solid pink;
+    }
+    #c2-r9{
+        // east asia - fought in civil war
+        grid-column: 2/3;
+        grid-row: 9/9;
+        justify-self: center;
+        border:3px solid green;
+    }
+
     path{
         transform: scale(.5);
     }
