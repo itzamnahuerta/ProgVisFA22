@@ -7,7 +7,8 @@ section{
 
 
 .tooltip{
-    font-family: Anek Devanagari;
+    padding: 20px;
+    font-family: Anthropocene-Thin;
     font-size: 10pt;
     border: 2px solid black;
     width: 200px;
@@ -20,21 +21,23 @@ section{
 .grid-viz{
     transform: rotate(-5deg);
     margin-top: 4em;
-    margin-left: 4em;
-    font-family:  HK-Grotesk-Light;
+    margin-left: 20%;
+    font-family:  Anthropocene-Thin;
+    color:black;    
     // border: 2px solid salmon;
     height: 100%;
     width: 90%;
     display:grid;
-    grid-template-columns: 50px 180px 180px 180px 180px 180px 180px;
-    grid-template-rows: 70px 70px 70px 70px 70px  70px  70px 70px 70px ;
+    grid-template-columns: 50px 180px 180px 180px 180px;
+    grid-template-rows: 50px  repeat(8, 90px);
+    // grid-template-rows: 70px 70px 70px 70px 70px  70px  70px 70px 70px ;
 
     // ATTRIBUTES NAMES
     #c1-r1{
         // attribute: fought in civil war
         grid-column: 2/3;
         grid-row: 1/2;
-        // border-right:1px solid black; 
+        border-bottom:.3px solid #7F7E7A; 
         text-align: center;
     }
     #c2-r1 {
@@ -42,45 +45,59 @@ section{
         grid-column: 3/4;
         grid-row: 1/2;
         text-align: center;
+        border-bottom:.3px solid #7F7E7A; 
     }
     #c3-r1 {
-        // attribute: transitioned to organized crime
+        // attribute: transitioned from organized crime to resistence
         grid-column: 4/5;
         grid-row: 1/2;
         text-align: center;
+        border-bottom:.3px solid #7F7E7A; 
     }
     #c4-r1 {
-        // attribute: transitioned to organized crime
+        // attribute: drug trade
         grid-column: 5/6;
         grid-row: 1/2;
         text-align: center;
+        border-bottom:.3px solid #7F7E7A; 
     }
     #c5-r1 {
-        // attribute: transitioned to organized crime
+        // attribute: TBA
         grid-column: 6/7;
         grid-row: 1/2;
         text-align: center;
+        border-bottom:.3px solid #7F7E7A; 
     }
     #c6-r1 {
-        // attribute: transitioned to organized crime
+        // attribute: TBA
         grid-column: 7/8;
         grid-row: 1/2;
         text-align: center;
+        border-bottom:.3px solid #CBC7CF; 
     }
 
 
     // REGION NAMES
     .region-title{
         transform: rotate(-90deg);
-        align-self: flex-end;
-        font-size: 6pt;
-        cursor: crosshair;
+        width: 6em;
+        align-self: flex-start;
+        font-size: 8pt;
+        cursor: default;
+        margin-top: 1em;
+
     }
+
     h5{
-        font-size: 6pt;
+        font-size: 8pt;
         cursor: crosshair;
         justify-self: center;
     }
+    .attr-title:hover {
+        text-decoration: line-through;
+
+    }
+
     #c1-r2 {
         // region: latin america
         grid-column: 1/2;
@@ -88,7 +105,6 @@ section{
         padding-top: 1em;
         justify-self: top;
         text-align: center;
-        // border: 2px solid black;
     }
     #c1-r3 {
         // region: africa
@@ -158,12 +174,16 @@ section{
     g{
         animation: fade-in 1s;
     }
+
+
+
     // SVGS 
     #c2-r2{
         // latin america - fought in civil war
         grid-column: 2/3;
         grid-row: 2/3;
         justify-self: center;
+        border-bottom:.3px solid #7F7E7A;  
         // border:1px solid gray;
     }
     #c2-r3{
@@ -171,6 +191,7 @@ section{
         grid-column: 2/3;
         grid-row: 3/4;
         justify-self: center;
+        border-bottom:.3px solid #7F7E7A; 
         // border:1px solid gray;
     }
     #c2-r4{
@@ -178,6 +199,7 @@ section{
         grid-column: 2/3;
         grid-row: 4/5;
         justify-self: center;
+        border-bottom:.3px solid #7F7E7A; 
         // border:1px solid gray;
     }
     #c2-r5{
@@ -185,6 +207,7 @@ section{
         grid-column: 2/3;
         grid-row: 5/6;
         justify-self: center;
+        border-bottom:.3px solid #7F7E7A; 
         // border:1px solid gray;
     }
     #c2-r6{
@@ -192,6 +215,7 @@ section{
         grid-column: 2/3;
         grid-row: 6/7;
         justify-self: center;
+        border-bottom:.3px solid #7F7E7A; 
         // border:1px solid gray;
     }
     #c2-r7{
@@ -199,6 +223,7 @@ section{
         grid-column: 2/3;
         grid-row: 7/8;
         justify-self: center;
+        border-bottom:.3px solid #7F7E7A; 
         // border:1px solid gray;
     }
     #c2-r8{
@@ -206,6 +231,7 @@ section{
         grid-column: 2/3;
         grid-row: 8/9;
         justify-self: center;
+        border-bottom:.3px solid #7F7E7A; 
         // border:1px solid gray;
     }
     #c2-r9{
@@ -213,6 +239,7 @@ section{
         grid-column: 2/3;
         grid-row: 9/9;
         justify-self: center;
+        border-bottom:.3px solid #7F7E7A; 
         // border:1px solid gray;
     }
 
@@ -224,6 +251,7 @@ section{
         grid-column: 3/4;
         grid-row: 2/3;
         justify-self: center;
+        border-bottom:.3px solid #7F7E7A; 
         // border:3px solid greenyellow;
     }
     #c3-r3{
@@ -231,42 +259,49 @@ section{
         grid-column: 3/4;
         grid-row: 3/4;
         justify-self: center;
+        border-bottom:.3px solid #7F7E7A; 
     }
     #c3-r4{
         // mid eastern africa- transitioned to organized crime
         grid-column: 3/4;
         grid-row: 4/5;
         justify-self: center;
+        border-bottom:.3px solid #7F7E7A; 
     }    
     #c3-r5{
         // west - transitioned to organized crime
         grid-column: 3/4;
         grid-row: 5/6;
         justify-self: center;
+        border-bottom:.3px solid #7F7E7A; 
     }
     #c3-r6{
         // central eurasia - transitioned to organized crime
         grid-column: 3/4;
         grid-row: 6/7;
         justify-self: center;
+        border-bottom:.3px solid #7F7E7A; 
     }
     #c3-r7{
         // south asia - transitioned to organized crime
         grid-column: 3/4;
         grid-row: 7/8;
         justify-self: center;
+        border-bottom:.3px solid #7F7E7A; 
     }
     #c3-r8{
         // south east asia - transitioned to organized crime
         grid-column: 3/4;
         grid-row: 8/9;
         justify-self: center;
+        border-bottom:.3px solid #7F7E7A; 
     }
     #c3-r9{
         //  east asia - transitioned to organized crime
         grid-column: 3/4;
         grid-row: 9/10;
         justify-self: center;
+        border-bottom:.3px solid #7F7E7A; 
     }
     
     // ATTRIBUTE 3
@@ -276,6 +311,7 @@ section{
         grid-column: 4/5;
         grid-row: 2/3;
         justify-self: center;
+        border-bottom:.3px solid #7F7E7A; 
         // border:3px solid greenyellow;
     }
     #c4-r3{
@@ -283,42 +319,49 @@ section{
         grid-column: 4/5;
         grid-row: 3/4;
         justify-self: center;
+        border-bottom:.3px solid #7F7E7A; 
     }
     #c4-r4{
         // mid eastern africa- tfrom organized crime to resistence
         grid-column: 4/5;
         grid-row: 4/5;
         justify-self: center;
+        border-bottom:.3px solid #7F7E7A; 
     }    
     #c4-r5{
         // west - from organized crime to resistence
         grid-column: 4/5;
         grid-row: 5/6;
         justify-self: center;
+        border-bottom:.3px solid #7F7E7A; 
     }
     #c4-r6{
         // central eurasia - from organized crime to resistence
         grid-column: 4/5;
         grid-row: 6/7;
         justify-self: center;
+        border-bottom:.3px solid #7F7E7A; 
     }
     #c4-r7{
         // south asia - from organized crime to resistence
         grid-column: 4/5;
         grid-row: 7/8;
         justify-self: center;
+        border-bottom:.3px solid #7F7E7A; 
     }
     #c4-r8{
         // south east asia - from organized crime to resistence
         grid-column: 4/5;
         grid-row: 8/9;
         justify-self: center;
+        border-bottom:.3px solid #7F7E7A; 
     }
     #c4-r9{
         //  east asia - from organized crime to resistence
         grid-column: 4/5;
         grid-row: 9/10;
         justify-self: center;
+        border-bottom:.3px solid #7F7E7A; 
     }
 
     // ATTRIBUTE 4
@@ -327,6 +370,7 @@ section{
         grid-column: 5/6;
         grid-row: 2/3;
         justify-self: center;
+        border-bottom:.3px solid #7F7E7A; 
         // border:3px solid greenyellow;
     }
     #c5-r3{
@@ -334,42 +378,49 @@ section{
         grid-column: 5/6;
         grid-row: 3/4;
         justify-self: center;
+        border-bottom:.3px solid #7F7E7A; 
     }
     #c5-r4{
         // mid eastern africa- tfrom organized crime to resistence
         grid-column: 5/6;
         grid-row: 4/5;
         justify-self: center;
+        border-bottom:.3px solid #7F7E7A; 
     }    
     #c5-r5{
         // west - from organized crime to resistence
         grid-column: 5/6;
         grid-row: 5/6;
         justify-self: center;
+        border-bottom:.3px solid #7F7E7A; 
     }
     #c5-r6{
         // central eurasia - from organized crime to resistence
         grid-column: 5/6;
         grid-row: 6/7;
         justify-self: center;
+        border-bottom:.3px solid #7F7E7A; 
     }
     #c5-r7{
         // south asia - from organized crime to resistence
         grid-column: 5/6;
         grid-row: 7/8;
         justify-self: center;
+        border-bottom:.3px solid #7F7E7A; 
     }
     #c5-r8{
         // south east asia - from organized crime to resistence
         grid-column: 5/6;
         grid-row: 8/9;
         justify-self: center;
+        border-bottom:.3px solid #7F7E7A; 
     }
     #c5-r9{
         //  east asia - from organized crime to resistence
         grid-column: 5/6;
         grid-row: 9/10;
         justify-self: center;
+        border-bottom:.3px solid #7F7E7A; 
     }
 
 }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import '../styles/ProjectOverview.scss'
+
 export default class ProjectOverview extends Component {
   render() {
     return (
@@ -16,6 +17,11 @@ export default class ProjectOverview extends Component {
         encourages—and enables—a new research agenda that goes beyond rebel organizations and campaigns as units of analysis 
         and brings individual leaders more fully into modern conflict and peace studies. 
         The following tree map displays the top 40 highest GDP's made from groups.
+        </p>
+
+        <p id='data-source'>
+          Data Source: <a href='https://www.rebelleaders.org/'> Rebel Organization Leaders (ROLE) Database</a> <br/>
+          Citation: Acosta, Benjamin, Reyko Huang, and Daniel Silverman. "Introducing ROLE: A Database of Rebel Leader Attributes in Armed Conflict." Journal of Peace Research. Online First.
         </p>
 
       </div>
