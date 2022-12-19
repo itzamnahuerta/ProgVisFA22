@@ -61,7 +61,7 @@ export default class Title extends Component {
             <span>T</span>
           </div>
 
-
+{/* 
           <div> 
             <span>1</span>
             <span>9</span>
@@ -72,8 +72,8 @@ export default class Title extends Component {
             <span>0</span>
             <span>1</span>
             <span>1</span>
-          </div> 
-
+          </div>  */}
+        
         </div>
         <ProjectOverview/>
       </div>

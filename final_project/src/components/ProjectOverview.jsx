@@ -6,17 +6,8 @@ export default class ProjectOverview extends Component {
     return (
       <div className="overview">
         <p>
-        Existing literature on civil wars relies predominantly on state- and organization-level 
-        variables to understand conflict dynamics and outcomes. Rebel leaders’ personal
-        backgrounds and experiences are also key to explaining the behavior of the organizations they lead. Just as 
-        scholars have long highlighted the importance of state leaders’ biographical characteristics in interstate 
-        war and diplomacy, we argue that the attributes of rebel leaders affect their organizations’ decisions and actions in civil war.
-        The Rebel Organization Leaders (ROLE) Database, which contains a wide range of 
-        biographical information on all top rebel leaders in civil wars ongoing between 1980 and 2011. To illustrate its utility,
-        we then examine the influence of rebel leaders’ attributes on their organizations’ use of terrorism in civil war. This work 
-        encourages—and enables—a new research agenda that goes beyond rebel organizations and campaigns as units of analysis 
-        and brings individual leaders more fully into modern conflict and peace studies. 
-        The following tree map displays the top 40 highest GDP's made from groups.
+
+        This project aims to explore attributes of rebel organizations between 1980 - 2011 by region. Click on any attribute you are interested in and hover over the icons. Further information about the name of organization, area of operation, and the outcome goal will appear. The region with the most organization for attributed are colored in red.
         </p>
 
         <p id='data-source'>
