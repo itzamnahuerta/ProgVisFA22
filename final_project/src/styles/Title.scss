@@ -25,7 +25,7 @@
         display: inline-block;
         animation: animate 0.85s ease-in-out infinite alternate;
       }
-      $letters: 36; //Define number of letters in animation - including spaces
+      $letters: 42; //Define number of letters in animation - including spaces
       $timing: 0.17s;//Delay between letters
     //Sets timing differntly for each letter
     @while $letters > 0 {
