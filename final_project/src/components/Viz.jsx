@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import '../styles/Viz.scss'
 import data from '../data/original_df.csv';
 import * as d3 from 'd3';
+import {selectAll} from "https://cdn.skypack.dev/d3-selection@3";
+
 
 export default class Viz extends Component {
   constructor(props) {
@@ -19,10 +21,11 @@ export default class Viz extends Component {
     // RENDER DATA
     d3.csv(data).then(showData)
 
+
     // ICONS GRID
-    const perRow = 15;
+    const perRow = 10;
     const size = 14;
-    const sizeY= 20;
+    const sizeY= 10;
 
 
     // FUNCTION TO DISPLAY DATA TO THE DOM
@@ -45,7 +48,7 @@ export default class Viz extends Component {
     // console.log('the data',data)
     
     // SETTING UP SVG FOR D3
-    // const svg = d3.select('svg')
+
 
 
     // COUNT NUMBER FOR REBEL GROUPS THAT MEET EACH ATTRIBUTE
@@ -755,6 +758,31 @@ export default class Viz extends Component {
       .attr("width", 600)
       .attr("height", 600)
       .attr("fill", "red")
+      .on('mouseover', function(event,d){
+        toolTip.transition()
+        .duration(200)
+        .style('opacity','.9')
+        .attr('z-index','1000')
+        toolTip.html('lets seee')
+        .style("left", (event.pageX) + "px")
+        .style("top", (event.pageY - 28) + "px");
+      })
+      .on("mouseout", function(d) {
+        toolTip.transition()
+            .duration(500)
+            .style("opacity", 0);
+        });
+
+      const toolTip = d3.select('body')
+        .append('div')
+        .attr('class','tooltip')
+        .style('background-color','gray')
+        .style('opacity','0')
+        .style('position','absolute')
+      
+
+      
+      
 
       // AFRICA
       const africaSvg = 
