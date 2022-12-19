@@ -1601,7 +1601,7 @@ export default class Viz extends Component {
 
         {/* ATTRIBUTES */}
         <div id="c1-r1">
-        <h5 className="attr-title"> FOUGHT IN CIVIL WAR</h5>
+        <button className="btn"> <span className="btn-text">FOUGHT IN CIVIL WAR</span></button>
         </div>
         
         <svg 
@@ -1653,7 +1653,7 @@ export default class Viz extends Component {
         </svg>
         
         <div id="c2-r1">
-        <h5 className="attr-title"> TRANSITIONED TO ORGANIZED CRIME</h5>
+        <button className="btn"> <span className="btn-text">TRANSITIONED TO ORGANIZED CRIME </span></button>
         </div>
 
         <svg 
@@ -1707,7 +1707,7 @@ export default class Viz extends Component {
 
 
         <div id="c3-r1">
-        <h5 className="attr-title"> TRANSITIONED FROM ORGANIZED CRIME TO RESISTENCE</h5>
+        <button className="btn"> <span className="btn-text">TRANSITIONED FROM ORGANIZED CRIME TO RESISTENCE</span></button>  
         </div>
 
         <svg 
@@ -1760,7 +1760,7 @@ export default class Viz extends Component {
         </svg>
 
         <div id="c4-r1">
-        <h5 className="attr-title"> DRUGTRADE</h5>
+        <button className="btn"> <span className="btn-text">DRUGTRADE</span></button>           
         </div>
 
         <svg 

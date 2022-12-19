@@ -33,6 +33,40 @@ section{
     // grid-template-rows: 70px 70px 70px 70px 70px  70px  70px 70px 70px ;
 
     // ATTRIBUTES NAMES
+
+
+    // ======================================
+    .btn{
+        font-family: Anthropocene-Thin;
+        border: none;
+        position: relative;
+        &::before{
+            transition: all 0.85s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            content: '';
+            width: 50%;
+            height: 100%;
+            background: black;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    
+        & .btn-text{
+            color: white;
+            // check out mdn docs for different types of blend modes. 
+            mix-blend-mode: difference;
+        }
+        &:hover{
+            &::before{
+                background: black;
+                width: 100%;
+            }
+        }
+    }    
+    // ======================================
+
+
+
     #c1-r1{
         // attribute: fought in civil war
         grid-column: 2/3;
@@ -92,10 +126,6 @@ section{
         font-size: 8pt;
         cursor: crosshair;
         justify-self: center;
-    }
-    .attr-title:hover {
-        text-decoration: line-through;
-
     }
 
     #c1-r2 {
