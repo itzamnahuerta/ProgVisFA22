@@ -24,8 +24,8 @@ export default class Viz extends Component {
 
     // ICONS GRID
     const perRow = 10;
-    const size = 14;
-    const sizeY= 10;
+    const size = 16;
+    const sizeY= 12;
 
 
     // FUNCTION TO DISPLAY DATA TO THE DOM
@@ -41,15 +41,14 @@ export default class Viz extends Component {
         d.transitioned_to_organized_crime = d.transitioned_to_organized_crime;
         d.transitioned_from_organized_crime_to_resistance = d.transitioned_from_organized_crime_to_resistance;
         d.drugtrade = d.drugtrade;
+        d.outcome_goal = d.outcome_goal;
+        d.leader_s = d.leader_s;
 
     })
 
     // MAKING SURE THE DATA WAS RENDERED
     // console.log('the data',data)
     
-    // SETTING UP SVG FOR D3
-
-
 
     // COUNT NUMBER FOR REBEL GROUPS THAT MEET EACH ATTRIBUTE
     let count = 0;
@@ -74,7 +73,7 @@ export default class Viz extends Component {
     // 2. Mapping through data to only render africa regions
     window.africaData = data.map((key,value) => {
       if(key['africa'] == 1){
-        // console.log("Africa:",key) 
+        console.log("Africa:",key) 
         return key;
       }
     })
@@ -740,6 +739,16 @@ export default class Viz extends Component {
     // inDrugTrade(window.latinAmericaData)
 
     let drugTrade = () => {
+      // TOOOL TIP
+      const toolTip = d3.select('body')
+      .append('div')
+      .attr('class','tooltip')
+      .style('background-color','#F3F3F1')
+      .style('opacity','0')
+      .style('position','absolute')
+      .style('display','none')
+
+
       // LATIN AMERICA
       const latinAmericaSvg = 
       d3.select('#c5-r2')
@@ -747,6 +756,7 @@ export default class Viz extends Component {
       .data(inDrugTrade(window.latinAmericaData)) 
       .enter()
       .append('g')
+      .attr("fill", "#CBC7CF") 
       .attr("transform", (d,i) => {
         const x = (i % perRow + 2) * size;
         const y = (Math.floor(i/perRow) +.60) * sizeY;
@@ -757,28 +767,25 @@ export default class Viz extends Component {
       .attr("d", rebel_icon)
       .attr("width", 600)
       .attr("height", 600)
-      .attr("fill", "red")
       .on('mouseover', function(event,d){
         toolTip.transition()
         .duration(200)
+        .style('display','block')
         .style('opacity','.9')
         .attr('z-index','1000')
-        toolTip.html('lets seee')
-        .style("left", (event.pageX) + "px")
-        .style("top", (event.pageY - 28) + "px");
+        toolTip.html( "<span class=tooltip-title> NAME</span>" + ":  "+  '<br/>' +  d.english_translation + "<br/> <br/>" +
+                       "<span class=tooltip-title> AREA OF OPERATION</span>" + ":  "+  '<br/>' + d.area_of_operation + "<br/>" + "<br/>"
+                     + "<span class=tooltip-title> GOALS</span>" + ":  "+  '<br/>' + d.outcome_goal)
+        .style("left", (event.pageX + 100) + "px")
+        .style("top", (event.pageY - 120) + "px")
       })
       .on("mouseout", function(d) {
         toolTip.transition()
             .duration(500)
-            .style("opacity", 0);
+            .style("opacity", 0)
+            .style('display','none');
         });
 
-      const toolTip = d3.select('body')
-        .append('div')
-        .attr('class','tooltip')
-        .style('background-color','gray')
-        .style('opacity','0')
-        .style('position','absolute')
       
 
       
@@ -797,15 +804,31 @@ export default class Viz extends Component {
         const y = (Math.floor(i/perRow) +.60) * sizeY;
         return "translate(" + [x,y] + ")"
       });
+      
 
       africaSvg.append('path')
       .attr("d", rebel_icon)
       .attr("width", 600)
       .attr("height", 600)
-      // .attr("fill", "#CBC7CF") 
-
-      // latinAmericaSvg.append('text')
-      // .text("test")
+      .attr("fill", "#CBC7CF") 
+      .on('mouseover', function(event,d){
+        toolTip.transition()
+        .duration(200)
+        .style('display','block')
+        .style('opacity','.9')
+        .attr('z-index','1000')
+        toolTip.html( "<span class=tooltip-title> NAME</span>" + ":  "+  '<br/>' +  d.english_translation + "<br/> <br/>" +
+                       "<span class=tooltip-title> AREA OF OPERATION</span>" + ":  "+  '<br/>' + d.area_of_operation + "<br/>" + "<br/>"
+                     + "<span class=tooltip-title> GOALS</span>" + ":  "+  '<br/>' + d.outcome_goal)
+        .style("left", (event.pageX + 100) + "px")
+        .style("top", (event.pageY - 120) + "px")
+      })
+      .on("mouseout", function(d) {
+        toolTip.transition()
+            .duration(500)
+            .style("opacity", 0)
+            .style('display','none');
+        });
 
 
       // MID EASTERN AFRICA
@@ -827,6 +850,25 @@ export default class Viz extends Component {
       .attr("width", 600)
       .attr("height", 600)
       .attr("fill", "#CBC7CF") 
+      .on('mouseover', function(event,d){
+        toolTip.transition()
+        .duration(200)
+        .style('display','block')
+        .style('opacity','.9')
+        .attr('z-index','1000')
+        toolTip.html( "<span class=tooltip-title> NAME</span>" + ":  "+  '<br/>' +  d.english_translation + "<br/> <br/>" +
+                       "<span class=tooltip-title> AREA OF OPERATION</span>" + ":  "+  '<br/>' + d.area_of_operation + "<br/>" + "<br/>"
+                     + "<span class=tooltip-title> GOALS</span>" + ":  "+  '<br/>' + d.outcome_goal)
+        .style("left", (event.pageX + 100) + "px")
+        .style("top", (event.pageY - 120) + "px")
+      })
+      .on("mouseout", function(d) {
+        toolTip.transition()
+            .duration(500)
+            .style("opacity", 0)
+            .style('display','none');
+        });
+
 
       // WEST
       const westSvg = 
@@ -846,7 +888,27 @@ export default class Viz extends Component {
       .attr("d", rebel_icon)
       .attr("width", 600)
       .attr("height", 600)
-      .attr("fill", "#CBC7CF") 
+      .attr("fill", "red") 
+      .on('mouseover', function(event,d){
+        toolTip.transition()
+        .duration(200)
+        .style('display','block')
+        .style('opacity','.9')
+        .attr('z-index','1000')
+        toolTip.html( "<span class=tooltip-title> NAME</span>" + ":  "+  '<br/>' +  d.english_translation + "<br/> <br/>" +
+                       "<span class=tooltip-title> AREA OF OPERATION</span>" + ":  "+  '<br/>' + d.area_of_operation + "<br/>" + "<br/>"
+                     + "<span class=tooltip-title> GOALS</span>" + ":  "+  '<br/>' + d.outcome_goal)
+        .style("left", (event.pageX + 100) + "px")
+        .style("top", (event.pageY - 120) + "px")
+      })
+      .on("mouseout", function(d) {
+        toolTip.transition()
+            .duration(500)
+            .style("opacity", 0)
+            .style('display','none');
+        });
+
+
 
       // CENTRAL EURASIA
       const centralEurasiaSvg = 
@@ -866,7 +928,25 @@ export default class Viz extends Component {
       .attr("d", rebel_icon)
       .attr("width", 600)
       .attr("height", 600)
-      .attr("fill", "#CBC7CF") 
+      .attr("fill", "#CBC7CF")
+      .on('mouseover', function(event,d){
+        toolTip.transition()
+        .duration(200)
+        .style('display','block')
+        .style('opacity','.9')
+        .attr('z-index','1000')
+        toolTip.html( "<span class=tooltip-title> NAME</span>" + ":  "+  '<br/>' +  d.english_translation + "<br/> <br/>" +
+                       "<span class=tooltip-title> AREA OF OPERATION</span>" + ":  "+  '<br/>' + d.area_of_operation + "<br/>" + "<br/>"
+                     + "<span class=tooltip-title> GOALS</span>" + ":  "+  '<br/>' + d.outcome_goal)
+        .style("left", (event.pageX + 100) + "px")
+        .style("top", (event.pageY - 120) + "px")
+      })
+      .on("mouseout", function(d) {
+        toolTip.transition()
+            .duration(500)
+            .style("opacity", 0)
+            .style('display','none');
+        });
     
 
       // SOUTH ASIA
@@ -887,7 +967,25 @@ export default class Viz extends Component {
       .attr("d", rebel_icon)
       .attr("width", 600)
       .attr("height", 600)
-      .attr("fill", "#CBC7CF")    
+      .attr("fill", "#CBC7CF")  
+      .on('mouseover', function(event,d){
+        toolTip.transition()
+        .duration(200)
+        .style('display','block')
+        .style('opacity','.9')
+        .attr('z-index','1000')
+        toolTip.html( "<span class=tooltip-title> NAME</span>" + ":  "+  '<br/>' +  d.english_translation + "<br/> <br/>" +
+                       "<span class=tooltip-title> AREA OF OPERATION</span>" + ":  "+  '<br/>' + d.area_of_operation + "<br/>" + "<br/>"
+                     + "<span class=tooltip-title> GOALS</span>" + ":  "+  '<br/>' + d.outcome_goal)
+        .style("left", (event.pageX + 100) + "px")
+        .style("top", (event.pageY - 120) + "px")
+      })
+      .on("mouseout", function(d) {
+        toolTip.transition()
+            .duration(500)
+            .style("opacity", 0)
+            .style('display','none');
+        });  
       
 
       // SOUTH EAST ASIA
@@ -909,6 +1007,25 @@ export default class Viz extends Component {
       .attr("width", 600)
       .attr("height", 600)
       .attr("fill", "#CBC7CF") 
+      .on('mouseover', function(event,d){
+        toolTip.transition()
+        .duration(200)
+        .style('display','block')
+        .style('opacity','.9')
+        .attr('z-index','1000')
+        toolTip.html( "<span class=tooltip-title> NAME</span>" + ":  "+  '<br/>' +  d.english_translation + "<br/> <br/>" +
+                       "<span class=tooltip-title> AREA OF OPERATION</span>" + ":  "+  '<br/>' + d.area_of_operation + "<br/>" + "<br/>"
+                     + "<span class=tooltip-title> GOALS</span>" + ":  "+  '<br/>' + d.outcome_goal)
+        .style("left", (event.pageX + 100) + "px")
+        .style("top", (event.pageY - 120) + "px")
+      })
+      .on("mouseout", function(d) {
+        toolTip.transition()
+            .duration(500)
+            .style("opacity", 0)
+            .style('display','none');
+        });
+
 
       // SOUTH ASIA
       const eastAsiaSvg = 
@@ -929,6 +1046,24 @@ export default class Viz extends Component {
       .attr("width", 600)
       .attr("height", 600)
       .attr("fill", "#CBC7CF")
+      .on('mouseover', function(event,d){
+        toolTip.transition()
+        .duration(200)
+        .style('display','block')
+        .style('opacity','.9')
+        .attr('z-index','1000')
+        toolTip.html( "<span class=tooltip-title> NAME</span>" + ":  "+  '<br/>' +  d.english_translation + "<br/> <br/>" +
+                       "<span class=tooltip-title> AREA OF OPERATION</span>" + ":  "+  '<br/>' + d.area_of_operation + "<br/>" + "<br/>"
+                     + "<span class=tooltip-title> GOALS</span>" + ":  "+  '<br/>' + d.outcome_goal)
+        .style("left", (event.pageX + 100) + "px")
+        .style("top", (event.pageY - 120) + "px")
+      })
+      .on("mouseout", function(d) {
+        toolTip.transition()
+            .duration(500)
+            .style("opacity", 0)
+            .style('display','none');
+        });
 
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - -
