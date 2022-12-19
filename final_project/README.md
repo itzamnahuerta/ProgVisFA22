@@ -1,6 +1,8 @@
 # Rebel Organization Attributes 1980 - 2011
-[![Final Project](https://vimeo.com/782419764)
-
+[![Final Project](./assets/screenshots/photo1.png)
+[![Final Project](./assets/screenshots/photo2.png)
+[![Final Project](./assets/screenshots/photo3.png)
+[![Final Project](./assets/screenshots/photo4.png)
 
 
 
