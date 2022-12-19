@@ -30,12 +30,14 @@ $heading-font: 'Cosi-Times-Bold';
 $body-font-bold: 'Anek Devanagari';
 
 html{
-    display: flex;
-    background-color: #F3F3F1;
+    background-color: #F3F3F1; 
     border: 10px solid black;
-    height: auto;
+    // height: auto;
     padding: 2em;
-    margin: 1em;
-    // font-family: Cosi-Times-Bold;
+    margin: 2em;
 }
 
+.section-one {
+    // display: flex;
+    // border: 3px solid red;
+}

@@ -1,13 +1,16 @@
 @import './styles.scss';
 
 .overview{
-    width: 60%;
+    width: 50%;
     font-size: 10pt;
     font-family: Anthropocene-Thin;
+    width: 550px;
     // color: #a2a1a1;
     color:black;
     line-height: 24pt;
+    // border: 3px solid red;
 }
+
 #data-source{
     font-size: 6pt;
     line-height: 13pt;

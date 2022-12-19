@@ -61,20 +61,20 @@ export default class Title extends Component {
             <span>T</span>
           </div>
 
+
           <div> 
-            <span> 1</span>
-            <span> 9</span>
-            <span> 8</span>
-            <span> 4</span>
-            <span> -</span>
-            <span> 2</span>
-            <span> 0</span>
-            <span> 1</span>
-            <span> 1</span>
-          </div>
+            <span>1</span>
+            <span>9</span>
+            <span>8</span>
+            <span>4</span>
+            <span>-</span>
+            <span>2</span>
+            <span>0</span>
+            <span>1</span>
+            <span>1</span>
+          </div> 
 
         </div>
-
         <ProjectOverview/>
       </div>
     )

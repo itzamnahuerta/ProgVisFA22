@@ -5,13 +5,14 @@
     // border: 2px solid red;
     display: flex;
     flex-direction: row;
-    margin: 2em 0 0 3em ;
+    margin: 2em;
     .text-effect {
-        // border: 2px solid red;
+        // border: 2px solid green;
         border-radius: 12px;
         height: 90%;
         margin: 0 auto;
-        flex-basis: 100%;
+        width: 75%;
+        flex-basis: 50%;
       }
       .text-effect span {
         font-family:$heading-font;;
@@ -24,8 +25,8 @@
         display: inline-block;
         animation: animate 0.85s ease-in-out infinite alternate;
       }
-      $letters: 36; //Define number of letters in animation - including spaces
-      $timing: 0.15s;//Delay between letters
+      $letters: 47; //Define number of letters in animation - including spaces
+      $timing: 0.17s;//Delay between letters
     //Sets timing differntly for each letter
     @while $letters > 0 {
     .text-effect span:nth-child(#{$letters}) {
@@ -44,7 +45,7 @@
     }
 }
 
-// media queries for different screen sizes
+// // media queries for different screen sizes
 @media only screen and (max-width: 990px) {
     .text-effect span {
       font-size: 60px;
